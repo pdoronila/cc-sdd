@@ -1,0 +1,54 @@
+{
+  "name": "claude-code-spec-driven-development",
+  "version": "1.0.0",
+  "description": "Spec-driven development implementation for Claude Code using custom slash commands and hooks",
+  "main": ".claude/mcp-servers/spec-sync-server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "validate-specs": "./.claude/hooks/validate-specs.sh",
+    "sync-specs": "./.claude/hooks/sync-specs.sh",
+    "mcp-server": "node .claude/mcp-servers/spec-sync-server.js"
+  },
+  "keywords": [
+    "claude-code",
+    "spec-driven-development",
+    "requirements",
+    "documentation",
+    "mcp",
+    "hooks",
+    "slash-commands"
+  ],
+  "author": "Claude Code Implementation",
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^0.5.0"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-org/claude-code-sdd"
+  },
+  "bugs": {
+    "url": "https://github.com/your-org/claude-code-sdd/issues"
+  },
+  "homepage": "https://github.com/your-org/claude-code-sdd#readme",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "claude": {
+    "commands": [
+      "spec-init",
+      "spec-validate", 
+      "spec-update",
+      "spec-tasks",
+      "spec-review"
+    ],
+    "hooks": {
+      "pre-commit": ".claude/hooks/validate-specs.sh",
+      "post-edit": ".claude/hooks/sync-specs.sh"
+    },
+    "mcp-servers": {
+      "spec-sync": ".claude/mcp-servers/spec-sync-server.js"
+    }
+  }
+}
