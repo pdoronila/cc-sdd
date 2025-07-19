@@ -98,12 +98,29 @@ Evaluate overall quality:
 - [ ] Requirements are complete and testable
 - [ ] Design addresses all requirements
 - [ ] Tasks cover all design components
+- [ ] **Requirement Traceability**: All tasks link to specific requirements
+- [ ] **Orphaned Requirements**: No requirements without corresponding tasks
+- [ ] **Unlinked Tasks**: No tasks without requirement justification
 - [ ] API specs are comprehensive (if applicable)
 - [ ] Cross-document consistency maintained
 - [ ] Quality standards met
 
+### Requirement Traceability Analysis
+
+#### Coverage Matrix
+- **Total Requirements**: [Count from requirements.md]
+- **Requirements with Tasks**: [Count with traceability links]
+- **Orphaned Requirements**: [Requirements without task implementation]
+- **Unlinked Tasks**: [Tasks without requirement references]
+
+#### Traceability Issues
+- [ ] **Missing Links**: Tasks without _Requirements: REQ-X.Y_ field
+- [ ] **Invalid References**: Task links to non-existent requirement IDs
+- [ ] **Incomplete Coverage**: Requirements not addressed by any task
+
 ### Metrics
 - **Requirements Coverage**: X% of requirements have corresponding tasks
+- **Task Traceability**: X% of tasks link to specific requirements
 - **Design Alignment**: X% of design components are traced to requirements
 - **Task Completeness**: X% of estimated project scope is captured
 - **Documentation Quality**: Overall score based on completeness and clarity

@@ -65,6 +65,7 @@ For each task, generate:
 - **Key Components**: Classes, functions, or modules to implement
 - **Testing Requirements**: Unit tests, integration tests, E2E tests
 - **Documentation**: README updates, API docs, comments
+- **Requirements Traceability**: Link to specific requirement IDs from specs/requirements.md
 
 #### Quality Gates
 - **Definition of Done**: When the task is considered complete
@@ -150,9 +151,32 @@ Begin task generation by:
 1. Reading all specification documents
 2. Identifying epics and major work streams
 3. Breaking down into implementable tasks
-4. Organizing tasks into logical sprints
-5. Estimating effort and identifying risks
-6. Updating the tasks.md file with detailed breakdown
+4. **Linking tasks to requirements**: Map each task to specific requirement IDs
+5. Organizing tasks into logical sprints
+6. Estimating effort and identifying risks
+7. Updating the tasks.md file with detailed breakdown
+
+### Requirement Traceability
+
+For each task, include a **Requirements** field that links to specific requirements:
+
+```markdown
+- [ ] ⚪ **Task 2.1**: Implement Cloud Abstraction Layer
+  - **Description**: Create unified APIs for GCP services
+  - **Estimated Effort**: 20 hours
+  - **Dependencies**: Task 1.3
+  - **Assignee**: Backend Team
+  - **Files**:
+    - `lib/platform/cloud/provider.ex`
+    - Cloud service implementations
+  - _Requirements: REQ-1.1, FR-3, FR-7_
+```
+
+**Traceability Rules**:
+- **REQ-X.Y**: User stories from requirements.md
+- **FR-X**: Functional requirements from requirements.md  
+- **NFR-X**: Non-functional requirements
+- **Multiple IDs**: Use comma-separated list for tasks that satisfy multiple requirements
 
 Focus on creating tasks that are:
 - **Specific**: Clear about what needs to be built
@@ -160,5 +184,6 @@ Focus on creating tasks that are:
 - **Testable**: Clear success criteria
 - **Realistic**: Achievable within estimated time
 - **Valuable**: Contributes to project goals
+- **Traceable**: Clearly linked to requirements
 
 Start the task generation process now.

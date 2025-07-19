@@ -18,7 +18,7 @@
 
 ### Epic 1: [Epic Name]
 
-#### Story 1.1: [Story Title]
+#### REQ-1.1: [Story Title]
 **WHEN** [trigger condition]  
 **THE SYSTEM SHALL** [system response]  
 **WHERE** [applicable conditions/constraints]
@@ -31,7 +31,7 @@
 **Priority**: High/Medium/Low
 **Estimated Effort**: [Story points or time estimate]
 
-#### Story 1.2: [Story Title]
+#### REQ-1.2: [Story Title]
 **WHEN** [trigger condition]  
 **THE SYSTEM SHALL** [system response]  
 **WHERE** [applicable conditions/constraints]
@@ -62,23 +62,23 @@
 ## Non-Functional Requirements
 
 ### Performance Requirements
-- **Response Time**: [Maximum acceptable response times]
-- **Throughput**: [Expected load and transaction volumes]
-- **Scalability**: [Growth expectations and limits]
+- **NFR-1**: **Response Time**: [Maximum acceptable response times]
+- **NFR-2**: **Throughput**: [Expected load and transaction volumes]
+- **NFR-3**: **Scalability**: [Growth expectations and limits]
 
 ### Security Requirements
-- **Authentication**: [Authentication mechanisms required]
-- **Authorization**: [Access control requirements]
-- **Data Protection**: [Encryption and privacy requirements]
+- **NFR-4**: **Authentication**: [Authentication mechanisms required]
+- **NFR-5**: **Authorization**: [Access control requirements]
+- **NFR-6**: **Data Protection**: [Encryption and privacy requirements]
 
 ### Reliability Requirements
-- **Availability**: [Uptime requirements]
-- **Error Handling**: [How system should handle failures]
-- **Backup/Recovery**: [Data backup and disaster recovery needs]
+- **NFR-7**: **Availability**: [Uptime requirements]
+- **NFR-8**: **Error Handling**: [How system should handle failures]
+- **NFR-9**: **Backup/Recovery**: [Data backup and disaster recovery needs]
 
 ### Usability Requirements
-- **User Interface**: [UI/UX requirements and standards]
-- **Accessibility**: [Accessibility compliance requirements]
+- **NFR-10**: **User Interface**: [UI/UX requirements and standards]
+- **NFR-11**: **Accessibility**: [Accessibility compliance requirements]
 - **Documentation**: [User documentation requirements]
 
 ## Constraints and Assumptions
