@@ -9,17 +9,6 @@
     ],
     "deny": []
   },
-  "mcpServers": {
-    "spec-sync": {
-      "type": "stdio",
-      "command": "node",
-      "args": [".claude/mcp-servers/spec-sync-server.js"],
-      "env": {
-        "SPEC_DIR": "./specs",
-        "PROJECT_ROOT": "."
-      }
-    }
-  },
   "customSystemPrompt": "You are working in a spec-driven development environment. Always consider the relationship between specifications in /specs/ and implementation code. Use the spec-* commands to maintain alignment between documentation and code.",
   "appendSystemPrompt": "When making code changes, consider updating specifications. When starting new features, use /spec-init to ensure proper planning."
 }

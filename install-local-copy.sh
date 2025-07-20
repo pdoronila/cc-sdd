@@ -56,7 +56,7 @@ for util in validate-specs.sh sync-specs.sh quality-check.sh task-state-manager.
     fi
 done
 
-# Copy configuration and MCP server (merge with existing if present)
+# Copy configuration (merge with existing if present)
 echo -e "${Y}⚙️ Installing configuration...${NC}"
 if [ -f ".claude/settings.local.json" ]; then
     # Create backup of existing settings

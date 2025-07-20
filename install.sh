@@ -255,7 +255,6 @@ download_all_files() {
     local directories=(
         "$TEMP_DIR/.claude/commands"
         "$TEMP_DIR/.claude/utils"
-        "$TEMP_DIR/.claude/mcp-servers"
         "$TEMP_DIR/specs"
     )
     
@@ -322,8 +321,6 @@ download_all_files() {
         download_file ".claude/settings.local.json" "$TEMP_DIR/.claude/settings.local.json" "Claude Code configuration"
     fi
     
-    # Download MCP server
-    download_file ".claude/mcp-servers/spec-sync-server.js" "$TEMP_DIR/.claude/mcp-servers/spec-sync-server.js" "MCP server for advanced sync"
     
     # Download specification templates
     local specs=(
@@ -387,15 +384,6 @@ install_files() {
 install_dependencies() {
     print_status "STEP" "Installing dependencies..."
     
-    # Install Node.js dependencies if package.json exists
-    if [ -f "package.json" ] && command -v npm >/dev/null 2>&1; then
-        print_status "INFO" "Installing MCP SDK for Node.js project..."
-        if npm install @modelcontextprotocol/sdk --save-dev >/dev/null 2>&1; then
-            print_status "SUCCESS" "Installed @modelcontextprotocol/sdk"
-        else
-            print_status "WARNING" "Failed to install MCP SDK (you can install manually later)"
-        fi
-    fi
     
     # Update package.json scripts if it exists
     if [ -f "package.json" ] && command -v node >/dev/null 2>&1; then
