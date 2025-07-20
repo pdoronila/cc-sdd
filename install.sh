@@ -414,9 +414,8 @@ try {
     }
     
     const newScripts = {
-        'spec:validate': './.claude/hooks/validate-specs.sh',
-        'spec:sync': './.claude/hooks/sync-specs.sh',
-        'spec:server': 'node .claude/mcp-servers/spec-sync-server.js'
+        'spec:validate': './.claude/utils/validate-specs.sh',
+        'spec:sync': './.claude/utils/sync-specs.sh'
     };
     
     let added = 0;
@@ -580,7 +579,6 @@ print_completion_summary() {
         echo -e "${BLUE}📦 NPM SCRIPTS (if available):${NC}"
         echo -e "  ${YELLOW}npm run spec:validate${NC} - Validate specifications"
         echo -e "  ${YELLOW}npm run spec:sync${NC}     - Synchronize specifications"
-        echo -e "  ${YELLOW}npm run spec:server${NC}   - Start MCP server"
     fi
     
     echo ""

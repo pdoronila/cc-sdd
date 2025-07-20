@@ -17,7 +17,7 @@ command -v curl >/dev/null 2>&1 || { echo -e "${R}❌ curl required${NC}"; exit 
 
 # Create directories
 echo -e "${Y}📁 Creating directories...${NC}"
-mkdir -p .claude/{commands,utils,mcp-servers} specs
+mkdir -p .claude/{commands,utils} specs
 
 # Download function
 dl() {
@@ -84,8 +84,6 @@ else
     dl ".claude/settings.local.json" "Claude configuration"
 fi
 
-# MCP Server
-dl ".claude/mcp-servers/spec-sync-server.js" "MCP server"
 
 # Templates (only if they don't exist)
 echo -e "${Y}📋 Installing templates...${NC}"
@@ -97,11 +95,6 @@ for template in requirements.md design.md tasks.md api-spec.md; do
     fi
 done
 
-# Install npm dependencies if package.json exists
-if [ -f "package.json" ] && command -v npm >/dev/null 2>&1; then
-    echo -e "${Y}📦 Installing MCP SDK...${NC}"
-    npm install @modelcontextprotocol/sdk --save-dev >/dev/null 2>&1 || true
-fi
 
 # Note: .gitignore management left to user preference
 

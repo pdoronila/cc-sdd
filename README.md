@@ -23,7 +23,7 @@ This project provides a complete spec-driven development system that prioritizes
   - **Existing Projects**: Reverse engineering, documentation, and systematic improvement planning
 
 #### **Feature Development**
-- **`/spec-feat`** - Add new features to specifications with interactive refinement ⭐
+- **`/spec-feat`** - Add new features to specifications with interactive refinement ⭐ *(WIP)*
 
 #### **Quality Assurance**
 - **`/spec-validate`** - Validate specifications, requirement traceability, and consistency
@@ -165,8 +165,8 @@ claude /spec-done     # Repeat for continuous flow...
 # One-time setup
 claude /spec-init      # Complete specifications with tasks and traceability
 
-# Add new features (as needed)
-claude /spec-feat "New feature description"  # Interactive feature specification
+# Add new features (as needed) - WIP
+claude /spec-feat "New feature description"  # Interactive feature specification (Work In Progress)
 
 # Continuous development loop
 claude /spec-work      # ⚪ → 🔄 (select and start next task)
@@ -273,8 +273,6 @@ project/
 │   │   ├── sync-specs.sh           # Manual sync
 │   │   ├── quality-check.sh        # Manual quality check
 │   │   └── task-state-manager.sh   # Manual state management
-│   ├── mcp-servers/                # Optional MCP integration
-│   │   └── spec-sync-server.js     # Advanced sync features
 │   └── settings.local.json         # Hook-free configuration
 └── [your implementation files]
 ```
@@ -322,15 +320,6 @@ Manual tools available in `.claude/utils/`:
 ./.claude/utils/task-state-manager.sh # Manual task state management
 ```
 
-### 🌐 MCP Server (Optional)
-
-Advanced capabilities for power users:
-
-- **Drift Detection** - Identify spec-code divergence
-- **Consistency Validation** - Cross-document alignment
-- **Traceability Matrix** - Requirements coverage analysis
-- **Coverage Metrics** - Implementation completeness
-
 ## Team Collaboration
 
 ### 🤝 Zero Interference Approach
@@ -359,27 +348,27 @@ Advanced capabilities for power users:
 
 ### 🚀 Quick Install
 ```bash
-curl -sSL https://raw.githubusercontent.com/your-username/claude-code-sdd/main/quick-install.sh | bash
+curl -sSL https://raw.githubusercontent.com/pdoronila/cc-sdd/main/quick-install.sh | bash
 ```
 
 ### 📦 Full Install
 ```bash
-curl -sSL https://raw.githubusercontent.com/your-username/claude-code-sdd/main/install.sh | bash
+curl -sSL https://raw.githubusercontent.com/pdoronila/cc-sdd/main/install.sh | bash
 ```
 
 ### 🔧 Local Development Install
 ```bash
 # From cloned repository directory
-git clone https://github.com/your-username/claude-code-sdd.git
+git clone https://github.com/pdoronila/cc-sdd.git
 cd /path/to/your/project/
-../claude-code-sdd/install-local-copy.sh
+../cc-sdd/install-local-copy.sh
 ```
 
 ### 📋 Manual Install
 ```bash
-git clone https://github.com/your-username/claude-code-sdd.git
-cp -r claude-code-sdd/.claude /path/to/your/project/
-cp -r claude-code-sdd/specs /path/to/your/project/
+git clone https://github.com/pdoronila/cc-sdd.git
+cp -r cc-sdd/.claude /path/to/your/project/
+cp -r cc-sdd/specs /path/to/your/project/
 chmod +x /path/to/your/project/.claude/utils/*.sh
 ```
 

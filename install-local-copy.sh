@@ -30,7 +30,7 @@ fi
 
 # Create directories
 echo -e "${Y}📁 Creating directories...${NC}"
-mkdir -p .claude/{commands,utils,mcp-servers} specs
+mkdir -p .claude/{commands,utils} specs
 
 # Copy commands
 echo -e "${Y}📝 Installing slash commands...${NC}"
@@ -88,10 +88,6 @@ else
     fi
 fi
 
-if [ -f "$SOURCE_DIR/.claude/mcp-servers/spec-sync-server.js" ]; then
-    cp "$SOURCE_DIR/.claude/mcp-servers/spec-sync-server.js" ".claude/mcp-servers/"
-    echo -e "${G}✅ spec-sync-server.js${NC}"
-fi
 
 # Copy templates (only if they don't exist)
 echo -e "${Y}📋 Installing specification templates...${NC}"
@@ -108,15 +104,6 @@ for template in requirements.md design.md tasks.md api-spec.md; do
     fi
 done
 
-# Install npm dependencies if package.json exists
-if [ -f "package.json" ] && command -v npm >/dev/null 2>&1; then
-    echo -e "${Y}📦 Installing MCP SDK...${NC}"
-    if npm install @modelcontextprotocol/sdk --save-dev >/dev/null 2>&1; then
-        echo -e "${G}✅ @modelcontextprotocol/sdk installed${NC}"
-    else
-        echo -e "${Y}⚠️ Could not install MCP SDK (install manually if needed)${NC}"
-    fi
-fi
 
 # Note: .gitignore management left to user preference
 echo -e "${B}ℹ️ .gitignore management left to user preference${NC}"
