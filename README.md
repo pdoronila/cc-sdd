@@ -103,13 +103,8 @@ Built-in validation with multi-language support:
 ### 1. Installation
 
 ```bash
-# One-line install (recommended
-# https://github.com/pdoronila/cc-sdd)
-# https://raw.githubusercontent.com/pdoronila/cc-sdd/refs/heads/main/quick-install.sh
+# One-line install
 curl -sSL https://raw.githubusercontent.com/pdoronila/cc-sdd/refs/heads/main/quick-install.sh | bash
-
-# Or full install with all options
-curl -sSL https://raw.githubusercontent.com/pdoronila/cc-sdd/refs/heads/main/install.sh | bash
 ```
 
 ### 2. Initialize Your Project
@@ -349,11 +344,6 @@ Manual tools available in `.claude/utils/`:
 ### 🚀 Quick Install
 ```bash
 curl -sSL https://raw.githubusercontent.com/pdoronila/cc-sdd/main/quick-install.sh | bash
-```
-
-### 📦 Full Install
-```bash
-curl -sSL https://raw.githubusercontent.com/pdoronila/cc-sdd/main/install.sh | bash
 ```
 
 ### 🔧 Local Development Install
