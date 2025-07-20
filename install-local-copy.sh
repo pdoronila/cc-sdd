@@ -34,7 +34,7 @@ mkdir -p .claude/{commands,utils,mcp-servers} specs
 
 # Copy commands
 echo -e "${Y}📝 Installing slash commands...${NC}"
-for cmd in spec-init.md spec-tasks.md spec-validate.md spec-work.md spec-done.md; do
+for cmd in spec-init.md spec-feat.md spec-validate.md spec-work.md spec-done.md; do
     if [ -f "$SOURCE_DIR/.claude/commands/$cmd" ]; then
         cp "$SOURCE_DIR/.claude/commands/$cmd" ".claude/commands/"
         echo -e "${G}✅ $cmd${NC}"

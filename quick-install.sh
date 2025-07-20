@@ -35,8 +35,8 @@ dl() {
 echo -e "${Y}⬇️  Downloading files...${NC}"
 
 # Commands (Streamlined 5-Command Set)
-dl ".claude/commands/spec-init.md" "Project initialization"
-dl ".claude/commands/spec-tasks.md" "Task generation from requirements"
+dl ".claude/commands/spec-init.md" "Complete project initialization"
+dl ".claude/commands/spec-feat.md" "Interactive feature development"
 dl ".claude/commands/spec-validate.md" "Validation and traceability"
 dl ".claude/commands/spec-work.md" "Start next task"
 dl ".claude/commands/spec-done.md" "Complete task + quality gates"
@@ -76,10 +76,11 @@ echo -e "\n# Spec-driven development\n.claude/logs/\n*.spec.log" >> .gitignore 2
 
 echo -e "${G}🎉 Installation complete!${NC}"
 echo -e "\n${B}Quick start:${NC}"
-echo -e "1. ${Y}claude /spec-init${NC}     - Initialize your project"
-echo -e "2. ${Y}claude /spec-work${NC}     - Start working (auto-selects task + quality validation)"
-echo -e "3. ${Y}claude /spec-done${NC}     - Complete task + start next (seamless flow)"
-echo -e "\n${B}🚀 Hook-Free Workflow: /spec-init → /spec-tasks → /spec-work → /spec-done...${NC}"
-echo -e "${B}📋 Features: Requirement traceability, inline quality gates, emoji-based task states${NC}"
+echo -e "1. ${Y}claude /spec-init${NC}     - Complete project setup (requirements + design + tasks)"
+echo -e "2. ${Y}claude /spec-feat \"Feature\"${NC} - Add new features interactively"
+echo -e "3. ${Y}claude /spec-work${NC}     - Start working (auto-selects task + quality validation)"
+echo -e "4. ${Y}claude /spec-done${NC}     - Complete task + start next (seamless flow)"
+echo -e "\n${B}🚀 Hook-Free Workflow: /spec-init → /spec-feat → /spec-work → /spec-done...${NC}"
+echo -e "${B}📋 Features: Complete project setup, interactive feature development, requirement traceability${NC}"
 echo -e "${B}✨ No hooks, no interference, all logic in slash commands!${NC}"
-echo -e "${B}5 Essential commands: /spec-init, /spec-tasks, /spec-validate, /spec-work, /spec-done${NC}"
+echo -e "${B}5 Streamlined commands: /spec-init, /spec-feat, /spec-validate, /spec-work, /spec-done${NC}"

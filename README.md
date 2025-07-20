@@ -18,8 +18,10 @@ This project provides a complete spec-driven development system that prioritizes
 ### 🔧 Streamlined 5-Command System
 
 #### **Setup Phase (Once per project)**
-- **`/spec-init`** - Initialize project specifications with guided setup
-- **`/spec-tasks`** - Generate implementation tasks from requirements with full traceability
+- **`/spec-init`** - Complete project initialization: requirements, design, tasks with full traceability ⭐
+
+#### **Feature Development**
+- **`/spec-feat`** - Add new features to specifications with interactive refinement ⭐
 
 #### **Quality Assurance**
 - **`/spec-validate`** - Validate specifications, requirement traceability, and consistency
@@ -95,25 +97,19 @@ curl -sSL https://raw.githubusercontent.com/your-username/claude-code-sdd/main/i
 claude /spec-init
 ```
 
-**This creates:**
+**This creates complete project specifications:**
 - `specs/requirements.md` - User stories and requirements with unique IDs
 - `specs/design.md` - Technical architecture and design decisions  
-- `specs/tasks.md` - Implementation tasks with emoji-based progress
+- `specs/tasks.md` - Implementation tasks with emoji-based progress and full traceability
 - `specs/api-spec.md` - API documentation (if applicable)
 
-### 3. Generate Implementation Tasks
-
-```bash
-claude /spec-tasks
-```
-
-**This analyzes your requirements and creates:**
-- Prioritized task breakdown
-- Effort estimates and dependencies
-- Complete requirement traceability links
+**Includes comprehensive task breakdown:**
+- Prioritized task breakdown with effort estimates
+- Complete requirement traceability (REQ-X.Y, FR-X, NFR-X links)
+- Sprint organization and dependency management
 - Ready-to-implement work items
 
-### 4. Start Development Cycle
+### 3. Start Development Cycle
 
 ```bash
 # Start working
@@ -132,8 +128,10 @@ claude /spec-done     # Repeat for continuous flow...
 
 ```bash
 # One-time setup
-claude /spec-init      # Create specifications
-claude /spec-tasks     # Generate tasks with traceability
+claude /spec-init      # Complete specifications with tasks and traceability
+
+# Add new features (as needed)
+claude /spec-feat "New feature description"  # Interactive feature specification
 
 # Continuous development loop
 claude /spec-work      # ⚪ → 🔄 (select and start next task)

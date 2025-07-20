@@ -265,8 +265,8 @@ download_all_files() {
     
     # Download command files (Streamlined 5-Command Set)
     local commands=(
-        "spec-init.md:Project initialization command"
-        "spec-tasks.md:Task generation from requirements"
+        "spec-init.md:Complete project initialization"
+        "spec-feat.md:Interactive feature development"
         "spec-validate.md:Specification validation and traceability"
         "spec-work.md:Start next task with automation"
         "spec-done.md:Complete task with quality gates"
