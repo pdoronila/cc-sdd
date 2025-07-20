@@ -8,7 +8,7 @@ This project provides a complete spec-driven development system that prioritizes
 
 **Key Principles:**
 - 📋 **Specification First** - Plan before coding
-- 🔗 **Requirement Traceability** - Every task links to business needs  
+- 🔗 **Requirement Traceability** - Every task links to business needs
 - 🚀 **Frictionless Workflow** - 2-command development cycle
 - 🤝 **Team Friendly** - Zero interference, no background processes
 - ⚡ **Inline Automation** - Quality gates and state management built into commands
@@ -62,7 +62,7 @@ Automatically adapts to your development context:
 Visual progress tracking directly in `specs/tasks.md`:
 
 - ⚪ **Empty** - Not started (default state)
-- 🔄 **Started** - Currently being worked on  
+- 🔄 **Started** - Currently being worked on
 - 🎉 **Done** - Completed and validated
 
 Commands automatically update these symbols to show real-time progress.
@@ -103,11 +103,12 @@ Built-in validation with multi-language support:
 ### 1. Installation
 
 ```bash
-# One-line install (recommended)
-curl -sSL https://raw.githubusercontent.com/your-username/claude-code-sdd/main/quick-install.sh | bash
+# One-line install (recommended
+# https://github.com/pdoronila/cc-sdd)
+curl -sSL https://raw.githubusercontent.com/pdoronila/cc-sdd/main/quick-install.sh | bash
 
 # Or full install with all options
-curl -sSL https://raw.githubusercontent.com/your-username/claude-code-sdd/main/install.sh | bash
+curl -sSL https://raw.githubusercontent.com/pdoronila/cc-sdd/main/install.sh | bash
 ```
 
 ### 2. Initialize Your Project
@@ -132,7 +133,7 @@ claude /spec-init
 
 **Creates complete project specifications:**
 - `specs/requirements.md` - User stories and requirements with unique IDs
-- `specs/design.md` - Technical architecture and design decisions  
+- `specs/design.md` - Technical architecture and design decisions
 - `specs/tasks.md` - Implementation tasks with emoji-based progress and full traceability
 - `specs/api-spec.md` - API documentation (if applicable)
 
@@ -150,7 +151,7 @@ claude /spec-work     # Auto-selects next task (⚪ → 🔄)
 # ... implement the task ...
 claude /spec-done     # Validates quality + marks done (🔄 → 🎉) + starts next
 
-# Continue seamlessly  
+# Continue seamlessly
 claude /spec-done     # Complete next task + start another
 claude /spec-done     # Repeat for continuous flow...
 ```
@@ -259,7 +260,7 @@ project/
 │   ├── design.md                   # Technical architecture and decisions
 │   ├── tasks.md                    # Implementation tasks with emoji states
 │   └── api-spec.md                 # API documentation (optional)
-├── .claude/                        # Claude Code configuration  
+├── .claude/                        # Claude Code configuration
 │   ├── commands/                   # 5 custom slash commands
 │   │   ├── spec-init.md            # Project initialization
 │   │   ├── spec-tasks.md           # Task generation with traceability
@@ -284,8 +285,8 @@ project/
 #### EARS Format Requirements
 ```markdown
 #### REQ-1.1: User Login
-**WHEN** a user enters valid credentials  
-**THE SYSTEM SHALL** authenticate and redirect to dashboard  
+**WHEN** a user enters valid credentials
+**THE SYSTEM SHALL** authenticate and redirect to dashboard
 **WHERE** authentication server is available
 
 **Acceptance Criteria:**
@@ -303,7 +304,7 @@ project/
 - [ ] ⚪ **Task 1.2**: Implement Login Form
   - **Description**: React component with validation
   - **Estimated Effort**: 4 hours
-  - **Dependencies**: Task 1.1  
+  - **Dependencies**: Task 1.1
   - **Files**: Login.tsx, Login.test.tsx, auth.service.ts
   - _Requirements: REQ-1.1, FR-2, NFR-4_
 ```
@@ -360,7 +361,7 @@ Advanced capabilities for power users:
 curl -sSL https://raw.githubusercontent.com/your-username/claude-code-sdd/main/quick-install.sh | bash
 ```
 
-### 📦 Full Install  
+### 📦 Full Install
 ```bash
 curl -sSL https://raw.githubusercontent.com/your-username/claude-code-sdd/main/install.sh | bash
 ```
@@ -391,7 +392,7 @@ claude /spec-validate   # Test command availability
 
 ### For Developers
 - **Clear Direction** - Always know what to work on next with prioritized task queues
-- **Quality Confidence** - Automated validation prevents regressions  
+- **Quality Confidence** - Automated validation prevents regressions
 - **Reduced Context Switching** - Seamless task transitions with workflow automation
 - **No Workflow Disruption** - Hook-free approach respects individual preferences
 - **Legacy Understanding** - Reverse-engineered specs help understand existing codebases
@@ -423,7 +424,7 @@ This is a reference implementation designed to be forked and customized:
 
 ## License
 
-Reference implementation for spec-driven development with Claude Code. 
+Reference implementation for spec-driven development with Claude Code.
 Adapt and modify freely for your projects.
 
 ---
