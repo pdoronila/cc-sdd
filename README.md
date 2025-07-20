@@ -18,7 +18,9 @@ This project provides a complete spec-driven development system that prioritizes
 ### 🔧 Streamlined 5-Command System
 
 #### **Setup Phase (Once per project)**
-- **`/spec-init`** - Complete project initialization: requirements, design, tasks with full traceability ⭐
+- **`/spec-init`** - Intelligent project initialization with automatic codebase detection ⭐
+  - **New Projects**: Interactive requirements gathering and fresh specification generation
+  - **Existing Projects**: Reverse engineering, documentation, and systematic improvement planning
 
 #### **Feature Development**
 - **`/spec-feat`** - Add new features to specifications with interactive refinement ⭐
@@ -29,6 +31,23 @@ This project provides a complete spec-driven development system that prioritizes
 #### **Development Cycle (Repeated)**
 - **`/spec-work`** - Auto-select next task and start implementation ⭐
 - **`/spec-done`** - Complete task with quality gates + start next task ⭐
+
+### 🔍 Intelligent Project Detection
+
+Automatically adapts to your development context:
+
+#### **🆕 New Projects (Greenfield Mode)**
+- Interactive discovery and requirements gathering
+- Fresh specification generation from user input
+- Technology stack planning and architecture design
+- Complete implementation roadmap creation
+
+#### **🔄 Existing Projects (Retrofit Mode)**
+- **Automatic Detection**: Recognizes Node.js, Python, Go, Rust, Elixir/Phoenix, and more
+- **Codebase Analysis**: Reverse engineers API endpoints, data models, and business logic
+- **Documentation Generation**: Creates specs from existing implementations
+- **Gap Analysis**: Identifies technical debt and improvement opportunities
+- **Systematic Planning**: Prioritizes documentation → technical debt → enhancements
 
 ### 🎯 Hook-Free Benefits
 
@@ -97,17 +116,31 @@ curl -sSL https://raw.githubusercontent.com/your-username/claude-code-sdd/main/i
 claude /spec-init
 ```
 
-**This creates complete project specifications:**
+**Automatically detects and adapts to your project:**
+
+#### **🆕 New Projects (Greenfield)**
+- Interactive discovery and requirements gathering
+- Complete specification generation from scratch
+- Technology stack planning and architecture design
+- Fresh implementation roadmap
+
+#### **🔄 Existing Projects (Retrofit)**
+- Automatic codebase analysis and reverse engineering
+- Documentation of current functionality and architecture
+- Identification of technical debt and improvement opportunities
+- Systematic enhancement planning
+
+**Creates complete project specifications:**
 - `specs/requirements.md` - User stories and requirements with unique IDs
 - `specs/design.md` - Technical architecture and design decisions  
 - `specs/tasks.md` - Implementation tasks with emoji-based progress and full traceability
 - `specs/api-spec.md` - API documentation (if applicable)
 
-**Includes comprehensive task breakdown:**
-- Prioritized task breakdown with effort estimates
+**Includes intelligent task breakdown:**
+- **New Projects**: Feature development with sprint organization
+- **Existing Projects**: Documentation → Technical Debt → Enhancements → Quality
 - Complete requirement traceability (REQ-X.Y, FR-X, NFR-X links)
-- Sprint organization and dependency management
-- Ready-to-implement work items
+- Ready-to-implement work items with priority-based sequencing
 
 ### 3. Start Development Cycle
 
@@ -139,6 +172,56 @@ claude /spec-work      # ⚪ → 🔄 (select and start next task)
 claude /spec-done      # 🔄 → 🎉 (quality validation + completion + next task)
 
 # Repeat /spec-done for continuous momentum!
+```
+
+### 📊 Visual Workflow
+
+```
+                    ┌─────────────────┐
+                    │   /spec-init    │
+                    │ Auto-Detection  │
+                    └─────────┬───────┘
+                              │
+                    ┌─────────▼────────┐
+                    │   Project Type?   │
+                    └─────┬──────┬─────┘
+                          │      │
+            ┌─────────────▼─┐  ┌─▼──────────────┐
+            │ 🆕 Greenfield │  │ 🔄 Existing    │
+            │ Requirements  │  │ Code Analysis  │
+            │ Gathering     │  │ & Reverse Eng. │
+            └─────────────┬─┘  └─┬──────────────┘
+                          │      │
+                    ┌─────▼──────▼─────┐
+                    │  Generate Specs  │
+                    │ • requirements   │
+                    │ • design         │
+                    │ • api-spec       │
+                    │ • tasks          │
+                    └─────────┬────────┘
+                              │
+              ┌───────────────▼────────────────┐
+              │         Development Flow        │
+              └─────────────┬───────────────────┘
+                            │
+    ┌───────────────────────▼────────────────────────┐
+    │                 Daily Workflow                 │
+    │                                                │
+    │  /spec-feat ──► Add new feature specs         │
+    │       │                                        │
+    │       ▼                                        │
+    │  /spec-work ──► ⚪ → 🔄 Select & start task    │
+    │       │                                        │
+    │       ▼                                        │
+    │  Code & Test ──► Write implementation          │
+    │       │                                        │
+    │       ▼                                        │
+    │  /spec-done ──► 🔄 → 🎉 Quality gates + next  │
+    │       │                                        │
+    │       └───────► Loop back to /spec-work        │
+    │                                                │
+    │  /spec-validate ──► Check consistency          │
+    └────────────────────────────────────────────────┘
 ```
 
 ### ⚡ What Happens During `/spec-done`
@@ -257,10 +340,18 @@ Advanced capabilities for power users:
 
 ### 👥 Best Practices
 
-1. **Collaborative Spec Writing** - Team reviews requirements and design
-2. **Individual Implementation** - Developers use `/spec-work` and `/spec-done` as desired
+#### **For New Projects**
+1. **Team Spec Writing** - Collaborative requirements gathering and design sessions
+2. **Individual Implementation** - Developers use `/spec-work` and `/spec-done` workflow
 3. **Regular Validation** - Team runs `/spec-validate` before major milestones
-4. **Living Documentation** - Specifications stay current with implementation
+4. **Living Documentation** - Specifications evolve with implementation
+
+#### **For Existing Projects**
+1. **Gradual Adoption** - Start with `/spec-init` to document current state
+2. **Systematic Documentation** - Use generated tasks to document critical features
+3. **Technical Debt Management** - Address high-priority gaps systematically
+4. **Feature Enhancement** - Use `/spec-feat` for new functionality
+5. **Knowledge Sharing** - Generated specs help with team onboarding
 
 ## Installation Options
 
@@ -299,22 +390,27 @@ claude /spec-validate   # Test command availability
 ## Benefits
 
 ### For Developers
-- **Clear Direction** - Always know what to work on next
+- **Clear Direction** - Always know what to work on next with prioritized task queues
 - **Quality Confidence** - Automated validation prevents regressions  
-- **Reduced Context Switching** - Seamless task transitions
+- **Reduced Context Switching** - Seamless task transitions with workflow automation
 - **No Workflow Disruption** - Hook-free approach respects individual preferences
+- **Legacy Understanding** - Reverse-engineered specs help understand existing codebases
 
 ### For Teams
+- **Universal Adoption** - Works with new projects AND existing codebases
 - **Shared Understanding** - Comprehensive specifications reduce miscommunication
-- **Progress Visibility** - Emoji states show real-time progress
+- **Progress Visibility** - Emoji states show real-time progress across all work
 - **Requirement Traceability** - Track business needs through implementation
+- **Systematic Improvement** - Organized approach to technical debt and enhancements
 - **Flexible Adoption** - Use as much or as little as desired
 
 ### For Projects
 - **Better Planning** - Detailed task breakdown improves estimates
 - **Living Documentation** - Specifications evolve with implementation
 - **Quality Assurance** - Built-in validation prevents technical debt
-- **Onboarding** - New team members understand system design quickly
+- **Rapid Onboarding** - New team members understand system design quickly
+- **Legacy Modernization** - Systematic approach to improving existing systems
+- **Technical Debt Management** - Prioritized roadmap for improvements
 
 ## Contributing
 
