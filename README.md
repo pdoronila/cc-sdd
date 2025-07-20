@@ -105,10 +105,11 @@ Built-in validation with multi-language support:
 ```bash
 # One-line install (recommended
 # https://github.com/pdoronila/cc-sdd)
-curl -sSL https://raw.githubusercontent.com/pdoronila/cc-sdd/main/quick-install.sh | bash
+# https://raw.githubusercontent.com/pdoronila/cc-sdd/refs/heads/main/quick-install.sh
+curl -sSL https://raw.githubusercontent.com/pdoronila/cc-sdd/refs/heads/main/quick-install.sh | bash
 
 # Or full install with all options
-curl -sSL https://raw.githubusercontent.com/pdoronila/cc-sdd/main/install.sh | bash
+curl -sSL https://raw.githubusercontent.com/pdoronila/cc-sdd/refs/heads/main/install.sh | bash
 ```
 
 ### 2. Initialize Your Project

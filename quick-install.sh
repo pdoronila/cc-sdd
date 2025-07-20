@@ -1,6 +1,6 @@
 #!/bin/bash
 # Quick Installer for Spec-Driven Development in Claude Code
-# Usage: curl -sSL https://raw.githubusercontent.com/your-username/claude-code-sdd/main/quick-install.sh | bash
+# Usage: curl -sSL https://raw.githubusercontent.com/pdoronila/cc-sdd/main/quick-install.sh | bash
 
 set -e
 
@@ -8,7 +8,7 @@ set -e
 G='\033[0;32m'; Y='\033[1;33m'; B='\033[0;34m'; R='\033[0;31m'; NC='\033[0m'
 
 # Configuration
-REPO="https://raw.githubusercontent.com/your-username/claude-code-sdd/main"
+REPO="https://raw.githubusercontent.com/pdoronila/cc-sdd/main"
 
 echo -e "${B}🚀 Installing Spec-Driven Development for Claude Code...${NC}"
 
