@@ -1,6 +1,6 @@
 #!/bin/bash
 # Spec-Driven Development Auto-Installer for Claude Code
-# Usage: curl -sSL https://raw.githubusercontent.com/your-username/claude-code-sdd/main/install.sh | bash
+# Usage: curl -sSL https://raw.githubusercontent.com/pdoronila/cc-sdd/main/install.sh | bash
 
 set -e
 
@@ -14,7 +14,7 @@ CYAN='\033[0;36m'
 NC='\033[0m' # No Color
 
 # Configuration
-GITHUB_REPO="https://raw.githubusercontent.com/your-username/claude-code-sdd/main"
+GITHUB_REPO="https://raw.githubusercontent.com/pdoronila/cc-sdd/main"
 VERSION="1.0.0"
 TEMP_DIR="/tmp/claude-sdd-install"
 
@@ -290,8 +290,37 @@ download_all_files() {
         download_file ".claude/utils/$util_file" "$TEMP_DIR/.claude/utils/$util_file" "$util_desc"
     done
     
-    # Download configuration
-    download_file ".claude/settings.local.json" "$TEMP_DIR/.claude/settings.local.json" "Claude Code configuration"
+    # Download configuration (merge with existing if present)
+    if [ -f ".claude/settings.local.json" ]; then
+        # Create backup of existing settings
+        BACKUP_FILE=".claude/settings.local.json.backup-$(date +%Y%m%d-%H%M%S)"
+        cp ".claude/settings.local.json" "$BACKUP_FILE"
+        print_status "INFO" "Backup created: $BACKUP_FILE"
+        print_status "INFO" "Merging with existing .claude/settings.local.json"
+        
+        download_file ".claude/settings.local.json" "$TEMP_DIR/.claude/settings.temp.json" "Claude Code configuration template"
+        # Check if spec commands are already configured
+        if grep -q "spec-init" ".claude/settings.local.json"; then
+            print_status "SUCCESS" "Spec commands already configured"
+            cp ".claude/settings.local.json" "$TEMP_DIR/.claude/settings.local.json"
+        else
+            print_status "INFO" "Adding spec commands to permissions..."
+            if command -v jq >/dev/null 2>&1; then
+                jq -s '
+                    .[0] as $existing | .[1] as $new |
+                    $existing * $new |
+                    .permissions.allow = (($existing.permissions.allow // []) + ($new.permissions.allow // []) | unique)
+                ' ".claude/settings.local.json" "$TEMP_DIR/.claude/settings.temp.json" > "$TEMP_DIR/.claude/settings.local.json"
+                print_status "SUCCESS" "Successfully merged settings"
+            else
+                print_status "WARNING" "jq not found, manual merge recommended"
+                cp "$TEMP_DIR/.claude/settings.temp.json" "$TEMP_DIR/.claude/settings.local.json"
+            fi
+        fi
+        rm -f "$TEMP_DIR/.claude/settings.temp.json"
+    else
+        download_file ".claude/settings.local.json" "$TEMP_DIR/.claude/settings.local.json" "Claude Code configuration"
+    fi
     
     # Download MCP server
     download_file ".claude/mcp-servers/spec-sync-server.js" "$TEMP_DIR/.claude/mcp-servers/spec-sync-server.js" "MCP server for advanced sync"
@@ -420,12 +449,11 @@ EOF
 update_gitignore() {
     print_status "STEP" "Updating .gitignore..."
     
-    local gitignore_entries=(
-        "# Spec-driven development logs"
-        ".claude/logs/"
-        "*.spec.log"
-        ""
-    )
+    # Note: .gitignore management left to user preference
+    print_status "INFO" "Skipping .gitignore modifications - left to user preference"
+    return 0
+    
+    local gitignore_entries=()
     
     local gitignore_file=".gitignore"
     local needs_update=false
@@ -558,7 +586,7 @@ print_completion_summary() {
     echo ""
     echo -e "${BLUE}📖 DOCUMENTATION:${NC}"
     echo -e "  Local: ${YELLOW}docs-sdd-README.md${NC} (or README-SDD.md)"
-    echo -e "  Online: ${YELLOW}https://github.com/your-username/claude-code-sdd${NC}"
+    echo -e "  Online: ${YELLOW}https://github.com/pdoronila/cc-sdd${NC}"
     echo ""
     
     if [ $ERRORS -gt 0 ]; then

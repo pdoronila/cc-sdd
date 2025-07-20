@@ -56,11 +56,36 @@ for util in validate-specs.sh sync-specs.sh quality-check.sh task-state-manager.
     fi
 done
 
-# Copy configuration and MCP server
+# Copy configuration and MCP server (merge with existing if present)
 echo -e "${Y}⚙️ Installing configuration...${NC}"
-if [ -f "$SOURCE_DIR/.claude/settings.local.json" ]; then
-    cp "$SOURCE_DIR/.claude/settings.local.json" ".claude/"
-    echo -e "${G}✅ settings.local.json${NC}"
+if [ -f ".claude/settings.local.json" ]; then
+    # Create backup of existing settings
+    BACKUP_FILE=".claude/settings.local.json.backup-$(date +%Y%m%d-%H%M%S)"
+    cp ".claude/settings.local.json" "$BACKUP_FILE"
+    echo -e "${B}ℹ️ Backup created: $BACKUP_FILE${NC}"
+    echo -e "${B}ℹ️ Merging with existing .claude/settings.local.json${NC}"
+    
+    if grep -q "spec-init" ".claude/settings.local.json"; then
+        echo -e "${G}✅ Spec commands already configured${NC}"
+    else
+        echo -e "${Y}📝 Adding spec commands to permissions...${NC}"
+        if command -v jq >/dev/null 2>&1; then
+            jq -s '
+                .[0] as $existing | .[1] as $new |
+                $existing * $new |
+                .permissions.allow = (($existing.permissions.allow // []) + ($new.permissions.allow // []) | unique)
+            ' ".claude/settings.local.json" "$SOURCE_DIR/.claude/settings.local.json" > ".claude/settings.merged.json"
+            mv ".claude/settings.merged.json" ".claude/settings.local.json"
+            echo -e "${G}✅ Successfully merged settings${NC}"
+        else
+            echo -e "${Y}⚠️ jq not found, manual merge recommended${NC}"
+        fi
+    fi
+else
+    if [ -f "$SOURCE_DIR/.claude/settings.local.json" ]; then
+        cp "$SOURCE_DIR/.claude/settings.local.json" ".claude/"
+        echo -e "${G}✅ settings.local.json${NC}"
+    fi
 fi
 
 if [ -f "$SOURCE_DIR/.claude/mcp-servers/spec-sync-server.js" ]; then
@@ -93,16 +118,8 @@ if [ -f "package.json" ] && command -v npm >/dev/null 2>&1; then
     fi
 fi
 
-# Update .gitignore
-if [ -f ".gitignore" ]; then
-    if ! grep -q ".claude/logs/" .gitignore; then
-        echo "" >> .gitignore
-        echo "# Spec-driven development" >> .gitignore
-        echo ".claude/logs/" >> .gitignore
-        echo "*.spec.log" >> .gitignore
-        echo -e "${G}✅ Updated .gitignore${NC}"
-    fi
-fi
+# Note: .gitignore management left to user preference
+echo -e "${B}ℹ️ .gitignore management left to user preference${NC}"
 
 echo ""
 echo -e "${G}🎉 Installation complete!${NC}"

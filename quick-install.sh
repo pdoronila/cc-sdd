@@ -49,8 +49,40 @@ dl ".claude/utils/quality-check.sh" "Manual quality check utility"
 dl ".claude/utils/task-state-manager.sh" "Manual task state manager"
 chmod +x .claude/utils/*.sh
 
-# Configuration
-dl ".claude/settings.local.json" "Claude configuration"
+# Configuration (merge with existing if present)
+echo -e "${Y}⚙️  Configuring Claude settings...${NC}"
+if [ -f ".claude/settings.local.json" ]; then
+    # Create backup of existing settings
+    BACKUP_FILE=".claude/settings.local.json.backup-$(date +%Y%m%d-%H%M%S)"
+    cp ".claude/settings.local.json" "$BACKUP_FILE"
+    echo -e "${B}ℹ️  Backup created: $BACKUP_FILE${NC}"
+    echo -e "${B}ℹ️  Merging with existing .claude/settings.local.json${NC}"
+    
+    # Download template to temp file
+    curl -sSL "$REPO/.claude/settings.local.json" -o ".claude/settings.temp.json" --fail
+    # Check if spec commands are already configured
+    if grep -q "spec-init" ".claude/settings.local.json"; then
+        echo -e "${G}✅ Spec commands already configured${NC}"
+    else
+        echo -e "${Y}📝 Adding spec commands to permissions...${NC}"
+        # Use jq if available for smart merging
+        if command -v jq >/dev/null 2>&1; then
+            # Merge permissions arrays without duplicates, merge other properties
+            jq -s '
+                .[0] as $existing | .[1] as $new |
+                $existing * $new |
+                .permissions.allow = (($existing.permissions.allow // []) + ($new.permissions.allow // []) | unique)
+            ' ".claude/settings.local.json" ".claude/settings.temp.json" > ".claude/settings.merged.json"
+            mv ".claude/settings.merged.json" ".claude/settings.local.json"
+            echo -e "${G}✅ Successfully merged settings${NC}"
+        else
+            echo -e "${Y}⚠️  jq not found, manual merge recommended${NC}"
+        fi
+    fi
+    rm -f ".claude/settings.temp.json"
+else
+    dl ".claude/settings.local.json" "Claude configuration"
+fi
 
 # MCP Server
 dl ".claude/mcp-servers/spec-sync-server.js" "MCP server"
@@ -71,8 +103,7 @@ if [ -f "package.json" ] && command -v npm >/dev/null 2>&1; then
     npm install @modelcontextprotocol/sdk --save-dev >/dev/null 2>&1 || true
 fi
 
-# Update .gitignore
-echo -e "\n# Spec-driven development\n.claude/logs/\n*.spec.log" >> .gitignore 2>/dev/null || true
+# Note: .gitignore management left to user preference
 
 echo -e "${G}🎉 Installation complete!${NC}"
 echo -e "\n${B}Quick start:${NC}"
