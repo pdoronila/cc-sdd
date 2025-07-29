@@ -34,7 +34,7 @@ chmod +x /path/to/your/project/.claude/hooks/*.sh
 ## What Gets Installed
 
 ### Core Components
-- **5 Orchestrated Slash Commands** (`/spec`, `/requirements`, `/design`, `/task`, `/start-task`)
+- **5 Orchestrated Slash Commands** (`/cc-sdd/spec`, `/cc-sdd/requirements`, `/cc-sdd/design`, `/cc-sdd/task`, `/cc-sdd/start-task`)
 - **3 Specialized AI Agents** (requirements-specialist, design-architect, task-planner)
 - **State Management Files** (PROJECT_STATE.md, WORKFLOW_CONTEXT.md)
 - **Generated Specifications** (REQUIREMENTS.md, DESIGN.md, TASK.md)
@@ -45,13 +45,12 @@ chmod +x /path/to/your/project/.claude/hooks/*.sh
 your-project/
 ├── .claude/
 │   ├── PROJECT_STATE.md    # Workflow status tracking
-│   ├── PROJECT_CONTEXT.md  # Project overview and metadata
 │   ├── WORKFLOW_CONTEXT.md # Agent coordination context
 │   ├── agents/             # Specialized AI agents
 │   │   ├── requirements-specialist.md
 │   │   ├── design-architect.md
 │   │   └── task-planner.md
-│   ├── commands/           # 5 orchestrated slash commands
+│   ├── commands/cc-sdd/    # Namespaced slash commands
 │   │   ├── spec.md
 │   │   ├── requirements.md
 │   │   ├── design.md
@@ -62,6 +61,7 @@ your-project/
 │   ├── REQUIREMENTS.md     # EARS-format requirements
 │   ├── DESIGN.md           # Technical architecture
 │   └── TASK.md             # Structured task breakdown
+├── CLAUDE.md               # Project overview and metadata (standard Claude Code context file)
 └── .gitignore              # Updated with spec-related entries
 ```
 
@@ -103,8 +103,7 @@ This creates a temporary environment and verifies:
 ```bash
 # In a test project
 curl -sSL https://raw.githubusercontent.com/your-username/claude-code-sdd/main/quick-install.sh | bash
-claude /spec-init
-claude /spec-validate
+claude /cc-sdd/spec "Test project"
 ```
 
 ## Features of the Installation System
@@ -129,6 +128,7 @@ claude /spec-validate
 
 ### 🎯 User Experience
 - **One Command**: Single curl command for complete agent-powered setup
+- **Interactive Approval**: Each document presented for user review before saving
 - **Intelligent Workflow**: AI agents handle specification generation automatically
 - **Clear Output**: Color-coded status messages and progress
 - **Agent Coordination**: Seamless requirements → design → tasks workflow
@@ -139,8 +139,7 @@ claude /spec-validate
 ### For Different Domains
 Modify these files before deployment:
 - `specs/*.md` - Update templates for your domain
-- `.claude/commands/*.md` - Adjust prompts and questions
-- `.claude/hooks/*.sh` - Add domain-specific validations
+- `.claude/commands/cc-sdd/*.md` - Adjust prompts and questions
 - `.claude/settings.local.json` - Configure permissions and prompts
 
 ### For Organizations
@@ -167,24 +166,24 @@ Modify these files before deployment:
 ## Support
 
 ### Common Issues
-1. **Permission Denied**: Run `chmod +x .claude/hooks/*.sh`
-2. **Command Not Found**: Ensure files have `.md` extension
-3. **MCP Server Fails**: Install Node.js and run `npm install @modelcontextprotocol/sdk`
-4. **Hooks Don't Run**: Check Claude Code hook configuration
+1. **Command Not Found**: Ensure commands are in `.claude/commands/cc-sdd/` directory
+2. **Files Not Created**: Check that user approved document saving during workflow
+3. **Agent Not Found**: Verify agents are in `.claude/agents/` directory
+4. **Permission Issues**: Ensure proper file permissions for Claude Code
 
 ### Troubleshooting
 ```bash
 # Verify installation
-claude /spec-validate
+claude /cc-sdd/spec "Test project"
 
-# Test hooks manually
-./.claude/hooks/validate-specs.sh
+# Check command structure
+ls -la .claude/commands/cc-sdd/
 
-# Check file permissions
-ls -la .claude/hooks/
+# Verify agent availability
+ls -la .claude/agents/
 
-# Validate command structure
-grep -r "spec-init" .claude/commands/
+# Check generated specifications
+ls -la specs/
 ```
 
 ## Success Metrics

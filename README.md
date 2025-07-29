@@ -24,16 +24,17 @@ This project provides a complete spec-driven development system that prioritizes
 - **Task Planner** - Development task breakdown with dependencies
 
 #### **Complete Workflow Commands**
-- **`/spec`** - Master orchestrator that runs all phases ⭐
-  - Generates requirements, design, and tasks in sequence
+- **`/cc-sdd/spec`** - Master orchestrator that runs all phases ⭐
+  - Generates requirements, design, and tasks in sequence with user approval
   - Uses specialized agents for each phase
+  - Interactive refinement loop - review and approve each document
   - Creates complete project specifications
 
 #### **Individual Phase Commands**
-- **`/requirements`** - Generate/refine EARS-format requirements ⭐
-- **`/design`** - Create technical architecture and design ⭐
-- **`/task`** - Break down into actionable development tasks ⭐
-- **`/start-task`** - Integrate all specs into comprehensive todo planning ⭐
+- **`/cc-sdd/requirements`** - Generate/refine EARS-format requirements ⭐
+- **`/cc-sdd/design`** - Create technical architecture and design ⭐
+- **`/cc-sdd/task`** - Break down into actionable development tasks ⭐
+- **`/cc-sdd/start-task`** - Integrate all specs into comprehensive todo planning ⭐
 
 ### 🤖 AI Agent Architecture
 
@@ -135,7 +136,7 @@ curl -sSL https://raw.githubusercontent.com/pdoronila/cc-sdd/refs/heads/main/qui
 ### 2. Generate Complete Specifications
 
 ```bash
-claude /spec "Your project description here"
+claude /cc-sdd/spec "Your project description here"
 ```
 
 **AI-Powered Specification Generation:**
@@ -147,7 +148,7 @@ claude /spec "Your project description here"
 - Master orchestrator coordinates the complete workflow
 
 #### **📋 Generated Specifications**
-- `.claude/PROJECT_CONTEXT.md` - Project overview and metadata
+- `CLAUDE.md` - Project overview and metadata (standard Claude Code context file)
 - `specs/REQUIREMENTS.md` - EARS-format functional requirements
 - `specs/DESIGN.md` - Technical architecture and component design
 - `specs/TASK.md` - Structured task breakdown with dependencies
@@ -155,25 +156,26 @@ claude /spec "Your project description here"
 
 #### **🔄 Individual Phase Refinement**
 ```bash
-claude /requirements "Additional feature requirements"
-claude /design "Focus on authentication architecture"
-claude /task "Break down frontend components"
-claude /start-task "Create implementation todo list"
+claude /cc-sdd/requirements "Additional feature requirements"
+claude /cc-sdd/design "Focus on authentication architecture"
+claude /cc-sdd/task "Break down frontend components"
+claude /cc-sdd/start-task "Create implementation todo list"
 ```
 
-### 3. Iterative Specification Development
+### 3. Interactive Specification Development
 
 ```bash
-# Complete workflow - generates all specifications
-claude /spec "E-commerce platform with user authentication"
+# Complete workflow - generates all specifications with user approval
+claude /cc-sdd/spec "E-commerce platform with user authentication"
+# Each phase presents document for review: approve or refine with feedback
 
 # Refine individual phases
-claude /requirements "Add payment processing requirements"
-claude /design "Update architecture for microservices"
-claude /task "Focus on user authentication tasks"
+claude /cc-sdd/requirements "Add payment processing requirements"
+claude /cc-sdd/design "Update architecture for microservices"
+claude /cc-sdd/task "Focus on user authentication tasks"
 
 # Re-run complete workflow for new features
-claude /spec "Add shopping cart and checkout functionality"
+claude /cc-sdd/spec "Add shopping cart and checkout functionality"
 ```
 
 ## Development Workflow
@@ -181,31 +183,32 @@ claude /spec "Add shopping cart and checkout functionality"
 ### 🚀 The Agent-Powered Cycle
 
 ```bash
-# Complete specification generation
-claude /spec "Project description"  # Full Requirements → Design → Tasks workflow
+# Complete specification generation with interactive approval
+claude /cc-sdd/spec "Project description"  # Full Requirements → Design → Tasks workflow
 
 # Phase-specific refinements
-claude /requirements "Additional requirements"  # EARS-format requirement generation
-claude /design "Architecture focus area"        # Technical design refinement
-claude /task "Component focus"                  # Task breakdown updates
-claude /start-task "Implementation planning"    # Integrated todo list creation
+claude /cc-sdd/requirements "Additional requirements"  # EARS-format requirement generation
+claude /cc-sdd/design "Architecture focus area"        # Technical design refinement
+claude /cc-sdd/task "Component focus"                  # Task breakdown updates
+claude /cc-sdd/start-task "Implementation planning"    # Integrated todo list creation
 
-# Iterative development
+# Interactive development
+# Each command presents document for review and approval
+# Type "save" to approve or "refine [feedback]" to improve
 # Use generated TASK.md to guide implementation
-# Re-run phases as requirements evolve
 ```
 
 ### 📊 Agent Workflow Architecture
 
 ```
                     ┌─────────────────┐
-                    │     /spec       │
+                    │  /cc-sdd/spec   │
                     │  Orchestrator   │
                     └─────────┬───────┘
                               │
                     ┌─────────▼────────┐
                     │  Initialize      │
-                    │ PROJECT_CONTEXT  │
+                    │   CLAUDE.md      │
                     └─────────┬────────┘
                               │
     ┌─────────────────────────▼─────────────────────────┐
@@ -228,11 +231,12 @@ claude /start-task "Implementation planning"    # Integrated todo list creation
     ┌───────────────────▼─────────────────────┐
     │           Individual Commands           │
     │                                         │
-    │  /requirements ──► Refine requirements  │
-    │  /design ──────► Update architecture    │
-    │  /task ────────► Modify task breakdown  │
+    │  /cc-sdd/requirements ──► Refine reqs   │
+    │  /cc-sdd/design ──────► Update arch     │
+    │  /cc-sdd/task ────────► Modify tasks    │
     │                                         │
     │  Each command uses specialized agents   │
+    │  with interactive approval process      │
     └─────────────────────────────────────────┘
 ```
 
@@ -279,16 +283,16 @@ project/
 ├── .claude/                        # Claude Code configuration
 │   ├── PROJECT_STATE.md            # Workflow status tracking
 │   ├── WORKFLOW_CONTEXT.md         # Agent coordination context
-│   ├── PROJECT_CONTEXT.md  # Project overview and metadata
 │   ├── agents/                     # Specialized AI agents
 │   │   ├── requirements-specialist.md  # EARS format expert
 │   │   ├── design-architect.md         # Technical architecture
 │   │   └── task-planner.md             # Development task breakdown
-│   ├── commands/                   # 4 orchestrated slash commands
+│   ├── commands/cc-sdd/            # Namespaced slash commands
 │   │   ├── spec.md                 # Master orchestrator
 │   │   ├── requirements.md         # Requirements generation
 │   │   ├── design.md               # Design creation
-│   │   └── task.md                 # Task planning
+│   │   ├── task.md                 # Task planning
+│   │   └── start-task.md           # Todo integration
 │   └── settings.local.json         # Agent permissions configuration
 ├── specs/                          # Generated specifications
 │   ├── REQUIREMENTS.md             # EARS-format requirements

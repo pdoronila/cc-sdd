@@ -62,6 +62,13 @@ for state_file in PROJECT_STATE.md WORKFLOW_CONTEXT.md; do
     fi
 done
 
+# Preserve existing CLAUDE.md
+if [ -f "CLAUDE.md" ]; then
+    echo -e "${B}ℹ️ Preserving existing: CLAUDE.md${NC}"
+else
+    echo -e "${Y}ℹ️ No existing CLAUDE.md found - will be created by /cc-sdd/spec${NC}"
+fi
+
 
 # Configuration (merge with existing if present)
 echo -e "${Y}⚙️  Configuring Claude settings...${NC}"

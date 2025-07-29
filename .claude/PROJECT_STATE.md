@@ -6,7 +6,7 @@
 - **Current Phase**: [Requirements/Design/Tasks/Implementation]
 
 ## Generated Artifacts
-- [ ] .claude/PROJECT_CONTEXT.md
+- [ ] CLAUDE.md (project context)
 - [ ] specs/REQUIREMENTS.md
 - [ ] specs/DESIGN.md
 - [ ] specs/TASK.md

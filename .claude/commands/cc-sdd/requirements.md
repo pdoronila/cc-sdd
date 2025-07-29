@@ -11,7 +11,7 @@ Generate or refine software requirements using the EARS (Easy Approach to Requir
 ## Context
 - Feature/Project: $ARGUMENTS
 - Existing requirements: @specs/REQUIREMENTS.md (if exists)
-- Project context: @.claude/PROJECT_CONTEXT.md
+- Project context: @CLAUDE.md
 
 ## Task
 Delegate to the requirements specialist sub-agent to create or refine requirements in EARS format.

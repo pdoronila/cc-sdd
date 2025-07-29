@@ -33,7 +33,7 @@ NEVER save files without explicit user approval.
 ## Workflow Execution
 
 1. **Requirements Phase** (Interactive)
-   - Create initial project context in `PROJECT_CONTEXT.md`
+   - Create initial project context in `CLAUDE.md`
    - Use requirements sub-agent to generate EARS format requirements document
    - Present the generated document directly to user for review
    - Handle user approval/refinement requests in main conversation
@@ -61,8 +61,14 @@ NEVER save files without explicit user approval.
 1. Initialize project structure:
    ```bash
    mkdir -p specs
-   echo "# Project: $ARGUMENTS" > .claude/PROJECT_CONTEXT.md
-   echo "Created: $(date)" >> .claude/PROJECT_CONTEXT.md
+   # Add project context to CLAUDE.md (append if exists, create if not)
+   echo "" >> CLAUDE.md
+   echo "-----" >> CLAUDE.md
+   echo "# Spec-Driven Development Project" >> CLAUDE.md
+   echo "Project: $ARGUMENTS" >> CLAUDE.md
+   echo "Created: $(date)" >> CLAUDE.md
+   echo "Generated using cc-sdd workflow" >> CLAUDE.md
+   echo "-----" >> CLAUDE.md
    ```
 
 2. Execute requirements phase:

@@ -46,7 +46,7 @@ Transform requirements and design documents into a structured task list with cle
    # Project Tasks
 
    ## Metadata
-   - **Project**: [Name from .claude/PROJECT_CONTEXT.md]
+   - **Project**: [Name from CLAUDE.md]
    - **Last Updated**: [ISO Date]
    - **Total Tasks**: [Count]
    - **Completed**: [Count] ([Percentage]%)

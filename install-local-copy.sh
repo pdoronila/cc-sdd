@@ -57,7 +57,7 @@ done
 
 # Copy state management files (only if they don't exist)
 echo -e "${Y}📋 Installing state management...${NC}"
-for state_file in PROJECT_STATE.md WORKFLOW_CONTEXT.md PROJECT_CONTEXT.md; do
+for state_file in PROJECT_STATE.md WORKFLOW_CONTEXT.md; do
     if [ ! -f ".claude/$state_file" ] && [ -f "$SOURCE_DIR/.claude/$state_file" ]; then
         cp "$SOURCE_DIR/.claude/$state_file" ".claude/"
         echo -e "${G}✅ $state_file${NC}"
@@ -67,6 +67,13 @@ for state_file in PROJECT_STATE.md WORKFLOW_CONTEXT.md PROJECT_CONTEXT.md; do
         echo -e "${Y}⚠️ Source not found: $state_file${NC}"
     fi
 done
+
+# Preserve existing CLAUDE.md
+if [ -f "CLAUDE.md" ]; then
+    echo -e "${B}ℹ️ Preserving existing: CLAUDE.md${NC}"
+else
+    echo -e "${Y}ℹ️ No existing CLAUDE.md found - will be created by /cc-sdd/spec${NC}"
+fi
 
 
 # Copy configuration (merge with existing if present)
