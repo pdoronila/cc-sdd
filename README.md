@@ -180,7 +180,7 @@ claude /spec-done      # 🔄 → 🎉 (quality validation + completion + next t
                     └─────────┬───────┘
                               │
                     ┌─────────▼────────┐
-                    │   Project Type?   │
+                    │   Project Type?  │
                     └─────┬──────┬─────┘
                           │      │
             ┌─────────────▼─┐  ┌─▼──────────────┐
@@ -197,14 +197,14 @@ claude /spec-done      # 🔄 → 🎉 (quality validation + completion + next t
                     │ • tasks          │
                     └─────────┬────────┘
                               │
-              ┌───────────────▼────────────────┐
+              ┌───────────────▼─────────────────┐
               │         Development Flow        │
               └─────────────┬───────────────────┘
                             │
     ┌───────────────────────▼────────────────────────┐
     │                 Daily Workflow                 │
     │                                                │
-    │  /spec-feat ──► Add new feature specs         │
+    │  /spec-feat ──► Add new feature specs          │
     │       │                                        │
     │       ▼                                        │
     │  /spec-work ──► ⚪ → 🔄 Select & start task    │
@@ -213,7 +213,7 @@ claude /spec-done      # 🔄 → 🎉 (quality validation + completion + next t
     │  Code & Test ──► Write implementation          │
     │       │                                        │
     │       ▼                                        │
-    │  /spec-done ──► 🔄 → 🎉 Quality gates + next  │
+    │  /spec-done ──► 🔄 → 🎉 Quality gates + next   │
     │       │                                        │
     │       └───────► Loop back to /spec-work        │
     │                                                │
@@ -259,15 +259,10 @@ project/
 ├── .claude/                        # Claude Code configuration
 │   ├── commands/                   # 5 custom slash commands
 │   │   ├── spec-init.md            # Project initialization
-│   │   ├── spec-tasks.md           # Task generation with traceability
+│   │   ├── spec-feat.md            # Feature development
 │   │   ├── spec-validate.md        # Validation and consistency
 │   │   ├── spec-work.md            # Start next task
 │   │   └── spec-done.md            # Complete with quality gates
-│   ├── utils/                      # Optional manual utilities
-│   │   ├── validate-specs.sh       # Manual validation
-│   │   ├── sync-specs.sh           # Manual sync
-│   │   ├── quality-check.sh        # Manual quality check
-│   │   └── task-state-manager.sh   # Manual state management
 │   └── settings.local.json         # Hook-free configuration
 └── [your implementation files]
 ```
@@ -303,17 +298,6 @@ project/
   - _Requirements: REQ-1.1, FR-2, NFR-4_
 ```
 
-### 🔧 Optional Utilities
-
-Manual tools available in `.claude/utils/`:
-
-```bash
-# Run manually when needed (no automatic execution)
-./.claude/utils/validate-specs.sh     # Validate specifications
-./.claude/utils/sync-specs.sh         # Sync specs with code
-./.claude/utils/quality-check.sh      # Manual quality validation
-./.claude/utils/task-state-manager.sh # Manual task state management
-```
 
 ## Team Collaboration
 
@@ -359,13 +343,11 @@ cd /path/to/your/project/
 git clone https://github.com/pdoronila/cc-sdd.git
 cp -r cc-sdd/.claude /path/to/your/project/
 cp -r cc-sdd/specs /path/to/your/project/
-chmod +x /path/to/your/project/.claude/utils/*.sh
 ```
 
 ### ✅ Verify Installation
 ```bash
 claude /spec-validate   # Test command availability
-./.claude/utils/validate-specs.sh  # Test utilities
 ```
 
 ## Benefits

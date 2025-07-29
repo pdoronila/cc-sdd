@@ -17,7 +17,7 @@ command -v curl >/dev/null 2>&1 || { echo -e "${R}❌ curl required${NC}"; exit 
 
 # Create directories
 echo -e "${Y}📁 Creating directories...${NC}"
-mkdir -p .claude/{commands,utils} specs
+mkdir -p .claude/commands specs
 
 # Download function
 dl() {
@@ -41,13 +41,6 @@ dl ".claude/commands/spec-validate.md" "Validation and traceability"
 dl ".claude/commands/spec-work.md" "Start next task"
 dl ".claude/commands/spec-done.md" "Complete task + quality gates"
 
-# Optional utilities
-mkdir -p .claude/utils
-dl ".claude/utils/validate-specs.sh" "Manual validation utility"
-dl ".claude/utils/sync-specs.sh" "Manual sync utility"
-dl ".claude/utils/quality-check.sh" "Manual quality check utility"
-dl ".claude/utils/task-state-manager.sh" "Manual task state manager"
-chmod +x .claude/utils/*.sh
 
 # Configuration (merge with existing if present)
 echo -e "${Y}⚙️  Configuring Claude settings...${NC}"

@@ -30,7 +30,7 @@ fi
 
 # Create directories
 echo -e "${Y}📁 Creating directories...${NC}"
-mkdir -p .claude/{commands,utils} specs
+mkdir -p .claude/commands specs
 
 # Copy commands
 echo -e "${Y}📝 Installing slash commands...${NC}"
@@ -43,18 +43,6 @@ for cmd in spec-init.md spec-feat.md spec-validate.md spec-work.md spec-done.md;
     fi
 done
 
-# Copy optional utilities
-echo -e "${Y}🔧 Installing optional utilities...${NC}"
-mkdir -p .claude/utils
-for util in validate-specs.sh sync-specs.sh quality-check.sh task-state-manager.sh; do
-    if [ -f "$SOURCE_DIR/.claude/utils/$util" ]; then
-        cp "$SOURCE_DIR/.claude/utils/$util" ".claude/utils/"
-        chmod +x ".claude/utils/$util"
-        echo -e "${G}✅ $util${NC}"
-    else
-        echo -e "${R}❌ Missing: $util${NC}"
-    fi
-done
 
 # Copy configuration (merge with existing if present)
 echo -e "${Y}⚙️ Installing configuration...${NC}"
@@ -125,10 +113,4 @@ echo -e "  ${Y}/spec-tasks${NC}    - Generate implementation tasks from requirem
 echo -e "  ${Y}/spec-validate${NC} - Validate specifications and traceability"
 echo -e "  ${Y}/spec-work${NC}     - Auto-select and start next task"
 echo -e "  ${Y}/spec-done${NC}     - Complete task + start next (with quality gates)"
-echo ""
-echo -e "${B}Optional utilities (manual use):${NC}"
-echo -e "  ${Y}./.claude/utils/validate-specs.sh${NC}     - Manual spec validation"
-echo -e "  ${Y}./.claude/utils/sync-specs.sh${NC}         - Manual spec sync"
-echo -e "  ${Y}./.claude/utils/quality-check.sh${NC}      - Manual quality validation"
-echo -e "  ${Y}./.claude/utils/task-state-manager.sh${NC} - Manual task state management"
 echo ""
