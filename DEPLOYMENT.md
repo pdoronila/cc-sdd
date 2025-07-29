@@ -1,8 +1,8 @@
 # Deployment Guide
 
-## 🚀 Automated Installation System Complete!
+## 🚀 Agent-Powered Installation System
 
-This spec-driven development system now includes comprehensive automated installation that users can run with a single command.
+This spec-driven development system uses AI agents and orchestrated workflows that users can install with a single command.
 
 ## Installation Options for Users
 
@@ -34,26 +34,35 @@ chmod +x /path/to/your/project/.claude/hooks/*.sh
 ## What Gets Installed
 
 ### Core Components
-- **5 Custom Slash Commands** (`/spec-init`, `/spec-validate`, `/spec-update`, `/spec-tasks`, `/spec-review`)
-- **2 Automation Hooks** (pre-commit validation, post-edit sync)
-- **1 MCP Server** (advanced spec synchronization)
-- **4 Specification Templates** (requirements, design, tasks, api-spec)
-- **Configuration** (Claude Code settings with permissions and prompts)
+- **5 Orchestrated Slash Commands** (`/spec`, `/requirements`, `/design`, `/task`, `/start-task`)
+- **3 Specialized AI Agents** (requirements-specialist, design-architect, task-planner)
+- **State Management Files** (PROJECT_STATE.md, WORKFLOW_CONTEXT.md)
+- **Generated Specifications** (REQUIREMENTS.md, DESIGN.md, TASK.md)
+- **Configuration** (Claude Code settings with agent permissions)
 
 ### Directory Structure Created
 ```
 your-project/
 ├── .claude/
-│   ├── commands/           # 5 slash commands (.md files)
-│   ├── hooks/             # 2 automation scripts (.sh files)
-│   ├── mcp-servers/       # MCP server for advanced features
-│   └── settings.local.json # Claude Code configuration
-├── specs/
-│   ├── requirements.md    # EARS format user stories
-│   ├── design.md         # Technical architecture
-│   ├── tasks.md          # Implementation planning
-│   └── api-spec.md       # API documentation
-└── .gitignore            # Updated with spec-related entries
+│   ├── PROJECT_STATE.md    # Workflow status tracking
+│   ├── PROJECT_CONTEXT.md  # Project overview and metadata
+│   ├── WORKFLOW_CONTEXT.md # Agent coordination context
+│   ├── agents/             # Specialized AI agents
+│   │   ├── requirements-specialist.md
+│   │   ├── design-architect.md
+│   │   └── task-planner.md
+│   ├── commands/           # 5 orchestrated slash commands
+│   │   ├── spec.md
+│   │   ├── requirements.md
+│   │   ├── design.md
+│   │   ├── task.md
+│   │   └── start-task.md
+│   └── settings.local.json # Agent permissions configuration
+├── specs/                  # AI-generated specifications
+│   ├── REQUIREMENTS.md     # EARS-format requirements
+│   ├── DESIGN.md           # Technical architecture
+│   └── TASK.md             # Structured task breakdown
+└── .gitignore              # Updated with spec-related entries
 ```
 
 ## Deployment Requirements
@@ -113,17 +122,17 @@ claude /spec-validate
 - **Verification**: Tests installation completeness before finishing
 
 ### ⚡ Performance
-- **Parallel Downloads**: Efficient file retrieval
+- **Agent Coordination**: Efficient sequential processing with state preservation
 - **Minimal Dependencies**: Only requires `curl` and basic shell tools
 - **Fast Execution**: Quick install completes in ~10 seconds
 - **Progress Feedback**: Clear status updates during installation
 
 ### 🎯 User Experience
-- **One Command**: Single curl command for complete setup
-- **Guided Setup**: Interactive prompts for existing configurations
+- **One Command**: Single curl command for complete agent-powered setup
+- **Intelligent Workflow**: AI agents handle specification generation automatically
 - **Clear Output**: Color-coded status messages and progress
-- **Next Steps**: Comprehensive guide after installation
-- **Documentation**: Embedded help and examples
+- **Agent Coordination**: Seamless requirements → design → tasks workflow
+- **Context Awareness**: WORKFLOW_CONTEXT.md maintains session continuity
 
 ## Customization
 

@@ -34,7 +34,7 @@ mkdir -p .claude/commands specs
 
 # Copy commands
 echo -e "${Y}📝 Installing slash commands...${NC}"
-for cmd in spec-init.md spec-feat.md spec-validate.md spec-work.md spec-done.md; do
+for cmd in spec.md requirements.md design.md task.md start-task.md; do
     if [ -f "$SOURCE_DIR/.claude/commands/$cmd" ]; then
         cp "$SOURCE_DIR/.claude/commands/$cmd" ".claude/commands/"
         echo -e "${G}✅ $cmd${NC}"
@@ -42,6 +42,25 @@ for cmd in spec-init.md spec-feat.md spec-validate.md spec-work.md spec-done.md;
         echo -e "${R}❌ Missing: $cmd${NC}"
     fi
 done
+
+# Copy agents
+echo -e "${Y}🤖 Installing AI agents...${NC}"
+mkdir -p .claude/agents
+for agent in requirements-specialist.md design-architect.md task-planner.md; do
+    if [ -f "$SOURCE_DIR/.claude/agents/$agent" ]; then
+        cp "$SOURCE_DIR/.claude/agents/$agent" ".claude/agents/"
+        echo -e "${G}✅ $agent${NC}"
+    else
+        echo -e "${R}❌ Missing: $agent${NC}"
+    fi
+done
+
+# Copy state management files
+echo -e "${Y}📋 Installing state management...${NC}"
+if [ -f "$SOURCE_DIR/.claude/PROJECT_STATE.md" ]; then
+    cp "$SOURCE_DIR/.claude/PROJECT_STATE.md" ".claude/"
+    echo -e "${G}✅ PROJECT_STATE.md${NC}"
+fi
 
 
 # Copy configuration (merge with existing if present)
@@ -77,20 +96,18 @@ else
 fi
 
 
-# Copy templates (only if they don't exist)
-echo -e "${Y}📋 Installing specification templates...${NC}"
-for template in requirements.md design.md tasks.md api-spec.md; do
-    if [ ! -f "specs/$template" ]; then
-        if [ -f "$SOURCE_DIR/specs/$template" ]; then
-            cp "$SOURCE_DIR/specs/$template" "specs/"
-            echo -e "${G}✅ $template${NC}"
-        else
-            echo -e "${R}❌ Missing source: $template${NC}"
-        fi
+# Copy context file (only if it doesn't exist)
+echo -e "${Y}📋 Installing workflow context...${NC}"
+if [ ! -f ".claude/WORKFLOW_CONTEXT.md" ]; then
+    if [ -f "$SOURCE_DIR/.claude/WORKFLOW_CONTEXT.md" ]; then
+        cp "$SOURCE_DIR/.claude/WORKFLOW_CONTEXT.md" ".claude/"
+        echo -e "${G}✅ WORKFLOW_CONTEXT.md${NC}"
     else
-        echo -e "${B}ℹ️ Already exists: specs/$template${NC}"
+        echo -e "${R}❌ Missing source: .claude/WORKFLOW_CONTEXT.md${NC}"
     fi
-done
+else
+    echo -e "${B}ℹ️ Already exists: .claude/WORKFLOW_CONTEXT.md${NC}"
+fi
 
 
 # Note: .gitignore management left to user preference
@@ -100,17 +117,19 @@ echo ""
 echo -e "${G}🎉 Installation complete!${NC}"
 echo ""
 echo -e "${B}Quick start:${NC}"
-echo -e "1. ${Y}claude /spec-init${NC}     - Initialize your project specifications"
-echo -e "2. ${Y}claude /spec-work${NC}     - Start working (auto-selects task + quality validation)"
-echo -e "3. ${Y}claude /spec-done${NC}     - Complete task + start next (seamless flow)"
+echo -e "1. ${Y}claude /spec \"Your project description\"${NC} - Generate complete specifications"
+echo -e "2. ${Y}claude /requirements \"Additional requirements\"${NC} - Refine requirements"
+echo -e "3. ${Y}claude /design \"Architecture focus\"${NC} - Update technical design"
+echo -e "4. ${Y}claude /task \"Component focus\"${NC} - Modify task breakdown"
+echo -e "5. ${Y}claude /start-task \"Implementation planning\"${NC} - Create integrated todo list"
 echo -e ""
-echo -e "${B}🚀 Hook-Free Workflow: /spec-work → /spec-done → /spec-done...${NC}"
-echo -e "${B}✨ No hooks, no interference, no background processes!${NC}"
+echo -e "${B}🤖 Agent-Powered Workflow: Requirements → Design → Tasks → Todo Planning${NC}"
+echo -e "${B}✨ AI agents handle specification generation automatically!${NC}"
 echo ""
-echo -e "${B}Streamlined 5-Command Workflow:${NC}"
-echo -e "  ${Y}/spec-init${NC}     - Initialize project specifications (setup)"
-echo -e "  ${Y}/spec-tasks${NC}    - Generate implementation tasks from requirements"
-echo -e "  ${Y}/spec-validate${NC} - Validate specifications and traceability"
-echo -e "  ${Y}/spec-work${NC}     - Auto-select and start next task"
-echo -e "  ${Y}/spec-done${NC}     - Complete task + start next (with quality gates)"
+echo -e "${B}Agent-Powered 5-Command System:${NC}"
+echo -e "  ${Y}/spec${NC}         - Master orchestrator (complete workflow)"
+echo -e "  ${Y}/requirements${NC} - EARS-format requirements generation"
+echo -e "  ${Y}/design${NC}       - Technical architecture and design"
+echo -e "  ${Y}/task${NC}         - Development task breakdown"
+echo -e "  ${Y}/start-task${NC}   - Integrated todo planning"
 echo ""

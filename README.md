@@ -1,53 +1,61 @@
 # Spec-Driven Development for Claude Code
 
-A hook-free implementation of spec-driven development workflows using Claude Code's custom slash commands. Zero interference with team workflows, maximum productivity.
+An agent-powered spec-driven development system using Claude Code's specialized agents and custom slash commands. Zero interference with team workflows, maximum productivity through intelligent automation.
 
 ## Overview
 
 This project provides a complete spec-driven development system that prioritizes creating detailed specifications before writing code. The hook-free approach ensures no interference with other developers while providing powerful automation through inline command logic.
 
 **Key Principles:**
-- 📋 **Specification First** - Plan before coding
+- 📋 **Specification First** - Plan before coding with EARS-format requirements
+- 🤖 **Agent-Powered** - Specialized AI agents for requirements, design, and task planning
 - 🔗 **Requirement Traceability** - Every task links to business needs
-- 🚀 **Frictionless Workflow** - 2-command development cycle
+- 🚀 **Streamlined Workflow** - 4-command orchestrated development cycle
 - 🤝 **Team Friendly** - Zero interference, no background processes
-- ⚡ **Inline Automation** - Quality gates and state management built into commands
+- ⚡ **Intelligent Automation** - AI agents handle specification generation and management
 
 ## Features
 
-### 🔧 Streamlined 5-Command System
+### 🤖 Agent-Powered 4-Command System
 
-#### **Setup Phase (Once per project)**
-- **`/spec-init`** - Intelligent project initialization with automatic codebase detection ⭐
-  - **New Projects**: Interactive requirements gathering and fresh specification generation
-  - **Existing Projects**: Reverse engineering, documentation, and systematic improvement planning
+**Specialized AI Agents:**
+- **Requirements Specialist** - EARS-format requirements generation
+- **Design Architect** - Technical architecture and component design
+- **Task Planner** - Development task breakdown with dependencies
 
-#### **Feature Development**
-- **`/spec-feat`** - Add new features to specifications with interactive refinement ⭐ *(WIP)*
+#### **Complete Workflow Commands**
+- **`/spec`** - Master orchestrator that runs all phases ⭐
+  - Generates requirements, design, and tasks in sequence
+  - Uses specialized agents for each phase
+  - Creates complete project specifications
 
-#### **Quality Assurance**
-- **`/spec-validate`** - Validate specifications, requirement traceability, and consistency
+#### **Individual Phase Commands**
+- **`/requirements`** - Generate/refine EARS-format requirements ⭐
+- **`/design`** - Create technical architecture and design ⭐
+- **`/task`** - Break down into actionable development tasks ⭐
+- **`/start-task`** - Integrate all specs into comprehensive todo planning ⭐
 
-#### **Development Cycle (Repeated)**
-- **`/spec-work`** - Auto-select next task and start implementation ⭐
-- **`/spec-done`** - Complete task with quality gates + start next task ⭐
+### 🤖 AI Agent Architecture
 
-### 🔍 Intelligent Project Detection
+Three specialized agents handle different aspects of specification:
 
-Automatically adapts to your development context:
+#### **Requirements Specialist Agent**
+- **EARS Format Expert**: Creates precise, testable requirements
+- **Pattern Recognition**: Ubiquitous, Event-Driven, State-Driven, Optional, Unwanted Behavior
+- **Quality Assurance**: Ensures atomic, testable requirements with clear acceptance criteria
+- **Tools**: Read, Write, WebSearch for comprehensive requirement analysis
 
-#### **🆕 New Projects (Greenfield Mode)**
-- Interactive discovery and requirements gathering
-- Fresh specification generation from user input
-- Technology stack planning and architecture design
-- Complete implementation roadmap creation
+#### **Design Architect Agent**
+- **Technical Architecture**: Translates requirements into actionable technical designs
+- **Component Design**: Defines system boundaries, interfaces, and data flow
+- **Technology Selection**: Chooses appropriate frameworks, patterns, and tools
+- **Tools**: Read, Write, Bash (directory analysis), WebSearch for architecture research
 
-#### **🔄 Existing Projects (Retrofit Mode)**
-- **Automatic Detection**: Recognizes Node.js, Python, Go, Rust, Elixir/Phoenix, and more
-- **Codebase Analysis**: Reverse engineers API endpoints, data models, and business logic
-- **Documentation Generation**: Creates specs from existing implementations
-- **Gap Analysis**: Identifies technical debt and improvement opportunities
-- **Systematic Planning**: Prioritizes documentation → technical debt → enhancements
+#### **Task Planner Agent**
+- **Task Breakdown**: Converts design into implementable development tasks
+- **Dependency Management**: Identifies task dependencies and optimal sequencing
+- **Complexity Estimation**: Assigns effort estimates (S/M/L/XL) and priorities (P0/P1/P2)
+- **Tools**: Read, Write, Bash (git integration) for project state management
 
 ### 🎯 Hook-Free Benefits
 
@@ -57,46 +65,63 @@ Automatically adapts to your development context:
 - **Portable** - Works in any environment without complex setup
 - **Reliable** - No hidden dependencies or automatic triggers
 
-### 📊 Emoji-Based Task States
+### 📊 Structured Task Management
 
-Visual progress tracking directly in `specs/tasks.md`:
-
-- ⚪ **Empty** - Not started (default state)
-- 🔄 **Started** - Currently being worked on
-- 🎉 **Done** - Completed and validated
-
-Commands automatically update these symbols to show real-time progress.
-
-### 🔗 Requirement Traceability
-
-Every task links to specific requirements:
+Task breakdown with comprehensive metadata in `specs/TASK.md`:
 
 ```markdown
-- [ ] ⚪ **Task 2.1**: Implement User Authentication
-  - **Description**: JWT-based authentication system
-  - **Estimated Effort**: 8 hours
-  - **Dependencies**: Task 1.3
-  - **Files**: auth.service.js, auth.controller.js
-  - _Requirements: REQ-1.1, REQ-1.2, FR-3, NFR-4_
+- [ ] [TASK-001] Component Implementation
+  - **Complexity**: M (Small/Medium/Large/XL)
+  - **Priority**: P0 (P0/P1/P2)
+  - **Dependencies**: TASK-002
+  - **Requirements**: REQ-001, REQ-010
+  - **Files**: src/components/component.js
 ```
 
-**Traceability System:**
-- **REQ-X.Y** - User stories from requirements.md
-- **FR-X** - Functional requirements
-- **NFR-X** - Non-functional requirements (performance, security, etc.)
+Agent-generated tasks include full traceability and project context.
 
-### ⚡ Inline Quality Gates
+### 🔗 EARS-Format Requirements
 
-Built-in validation with multi-language support:
+Precise, testable requirements using EARS patterns:
 
-- **Compilation** - Build/compile checks
-- **Testing** - Full test suite execution
-- **Code Quality** - Linting with auto-fixes
-- **Formatting** - Automatic code formatting
-- **Type Safety** - Type checking (when applicable)
+```markdown
+#### REQ-001 (Ubiquitous)
+The system shall authenticate users via JWT tokens
 
-**Supported Languages:**
-- Node.js/TypeScript, Python, Rust, Go, Java, Elixir/Phoenix
+#### REQ-010 (Event-Driven)
+When a user submits login credentials, the system shall validate and return a JWT token
+
+#### REQ-020 (State-Driven)
+While a user session is active, the system shall authorize API requests
+
+#### REQ-030 (Optional)
+Where two-factor authentication is enabled, the system shall require secondary verification
+
+#### REQ-040 (Unwanted Behavior)
+If authentication fails, then the system shall return a 401 error with rate limiting
+```
+
+**EARS Patterns:**
+- **Ubiquitous** - Always active system behavior
+- **Event-Driven** - Response to specific triggers
+- **State-Driven** - Conditional behavior based on system state
+- **Optional** - Feature-dependent functionality
+- **Unwanted Behavior** - Error handling and edge cases
+
+### ⚡ Workflow Context Management
+
+Automated state tracking and document synchronization:
+
+- **PROJECT_STATE.md** - Tracks workflow progress and generated artifacts
+- **.claude/WORKFLOW_CONTEXT.md** - Maintains session context across agent interactions
+- **Phase Coordination** - Ensures requirements → design → tasks flow
+- **Document Validation** - Verifies completeness and consistency
+- **Git Integration** - Commits specifications at each phase
+
+**Agent Coordination:**
+- Each agent reads previous phase outputs
+- Master orchestrator manages phase transitions
+- Context preservation across multi-step workflows
 
 ## Quick Start
 
@@ -107,163 +132,168 @@ Built-in validation with multi-language support:
 curl -sSL https://raw.githubusercontent.com/pdoronila/cc-sdd/refs/heads/main/quick-install.sh | bash
 ```
 
-### 2. Initialize Your Project
+### 2. Generate Complete Specifications
 
 ```bash
-claude /spec-init
+claude /spec "Your project description here"
 ```
 
-**Automatically detects and adapts to your project:**
+**AI-Powered Specification Generation:**
 
-#### **🆕 New Projects (Greenfield)**
-- Interactive discovery and requirements gathering
-- Complete specification generation from scratch
-- Technology stack planning and architecture design
-- Fresh implementation roadmap
+#### **🤖 Agent Orchestration**
+- Requirements Specialist creates EARS-format requirements
+- Design Architect develops technical architecture
+- Task Planner breaks down into actionable tasks
+- Master orchestrator coordinates the complete workflow
 
-#### **🔄 Existing Projects (Retrofit)**
-- Automatic codebase analysis and reverse engineering
-- Documentation of current functionality and architecture
-- Identification of technical debt and improvement opportunities
-- Systematic enhancement planning
+#### **📋 Generated Specifications**
+- `.claude/PROJECT_CONTEXT.md` - Project overview and metadata
+- `specs/REQUIREMENTS.md` - EARS-format functional requirements
+- `specs/DESIGN.md` - Technical architecture and component design
+- `specs/TASK.md` - Structured task breakdown with dependencies
+- `.claude/WORKFLOW_CONTEXT.md` - Session context and agent coordination
 
-**Creates complete project specifications:**
-- `specs/requirements.md` - User stories and requirements with unique IDs
-- `specs/design.md` - Technical architecture and design decisions
-- `specs/tasks.md` - Implementation tasks with emoji-based progress and full traceability
-- `specs/api-spec.md` - API documentation (if applicable)
+#### **🔄 Individual Phase Refinement**
+```bash
+claude /requirements "Additional feature requirements"
+claude /design "Focus on authentication architecture"
+claude /task "Break down frontend components"
+claude /start-task "Create implementation todo list"
+```
 
-**Includes intelligent task breakdown:**
-- **New Projects**: Feature development with sprint organization
-- **Existing Projects**: Documentation → Technical Debt → Enhancements → Quality
-- Complete requirement traceability (REQ-X.Y, FR-X, NFR-X links)
-- Ready-to-implement work items with priority-based sequencing
-
-### 3. Start Development Cycle
+### 3. Iterative Specification Development
 
 ```bash
-# Start working
-claude /spec-work     # Auto-selects next task (⚪ → 🔄)
-# ... implement the task ...
-claude /spec-done     # Validates quality + marks done (🔄 → 🎉) + starts next
+# Complete workflow - generates all specifications
+claude /spec "E-commerce platform with user authentication"
 
-# Continue seamlessly
-claude /spec-done     # Complete next task + start another
-claude /spec-done     # Repeat for continuous flow...
+# Refine individual phases
+claude /requirements "Add payment processing requirements"
+claude /design "Update architecture for microservices"
+claude /task "Focus on user authentication tasks"
+
+# Re-run complete workflow for new features
+claude /spec "Add shopping cart and checkout functionality"
 ```
 
 ## Development Workflow
 
-### 🚀 The Complete Cycle
+### 🚀 The Agent-Powered Cycle
 
 ```bash
-# One-time setup
-claude /spec-init      # Complete specifications with tasks and traceability
+# Complete specification generation
+claude /spec "Project description"  # Full Requirements → Design → Tasks workflow
 
-# Add new features (as needed) - WIP
-claude /spec-feat "New feature description"  # Interactive feature specification (Work In Progress)
+# Phase-specific refinements
+claude /requirements "Additional requirements"  # EARS-format requirement generation
+claude /design "Architecture focus area"        # Technical design refinement
+claude /task "Component focus"                  # Task breakdown updates
+claude /start-task "Implementation planning"    # Integrated todo list creation
 
-# Continuous development loop
-claude /spec-work      # ⚪ → 🔄 (select and start next task)
-# ... write code, run tests locally ...
-claude /spec-done      # 🔄 → 🎉 (quality validation + completion + next task)
-
-# Repeat /spec-done for continuous momentum!
+# Iterative development
+# Use generated TASK.md to guide implementation
+# Re-run phases as requirements evolve
 ```
 
-### 📊 Visual Workflow
+### 📊 Agent Workflow Architecture
 
 ```
                     ┌─────────────────┐
-                    │   /spec-init    │
-                    │ Auto-Detection  │
+                    │     /spec       │
+                    │  Orchestrator   │
                     └─────────┬───────┘
                               │
                     ┌─────────▼────────┐
-                    │   Project Type?  │
-                    └─────┬──────┬─────┘
-                          │      │
-            ┌─────────────▼─┐  ┌─▼──────────────┐
-            │ 🆕 Greenfield │  │ 🔄 Existing    │
-            │ Requirements  │  │ Code Analysis  │
-            │ Gathering     │  │ & Reverse Eng. │
-            └─────────────┬─┘  └─┬──────────────┘
-                          │      │
-                    ┌─────▼──────▼─────┐
-                    │  Generate Specs  │
-                    │ • requirements   │
-                    │ • design         │
-                    │ • api-spec       │
-                    │ • tasks          │
+                    │  Initialize      │
+                    │ PROJECT_CONTEXT  │
                     └─────────┬────────┘
                               │
-              ┌───────────────▼─────────────────┐
-              │         Development Flow        │
-              └─────────────┬───────────────────┘
-                            │
-    ┌───────────────────────▼────────────────────────┐
-    │                 Daily Workflow                 │
-    │                                                │
-    │  /spec-feat ──► Add new feature specs          │
-    │       │                                        │
-    │       ▼                                        │
-    │  /spec-work ──► ⚪ → 🔄 Select & start task    │
-    │       │                                        │
-    │       ▼                                        │
-    │  Code & Test ──► Write implementation          │
-    │       │                                        │
-    │       ▼                                        │
-    │  /spec-done ──► 🔄 → 🎉 Quality gates + next   │
-    │       │                                        │
-    │       └───────► Loop back to /spec-work        │
-    │                                                │
-    │  /spec-validate ──► Check consistency          │
-    └────────────────────────────────────────────────┘
+    ┌─────────────────────────▼─────────────────────────┐
+    │              Agent Coordination                   │
+    │                                                   │
+    │  Requirements ──► Design ──► Task Planning       │
+    │    Specialist      Architect    Specialist        │
+    │        │              │             │            │
+    │        ▼              ▼             ▼            │
+    │  REQUIREMENTS.md  DESIGN.md    TASK.md           │
+    │   (EARS Format)   (Technical)  (Actionable)      │
+    │                                                   │
+    └───────────────────┬───────────────────────────────┘
+                        │
+              ┌─────────▼─────────┐
+              │  Update State &   │
+              │ WORKFLOW_CONTEXT  │
+              └─────────┬─────────┘
+                        │
+    ┌───────────────────▼─────────────────────┐
+    │           Individual Commands           │
+    │                                         │
+    │  /requirements ──► Refine requirements  │
+    │  /design ──────► Update architecture    │
+    │  /task ────────► Modify task breakdown  │
+    │                                         │
+    │  Each command uses specialized agents   │
+    └─────────────────────────────────────────┘
 ```
 
-### ⚡ What Happens During `/spec-done`
+### ⚡ What Happens During Agent Coordination
 
-1. **Find Current Task** - Scans specs/tasks.md for 🔄 (started) tasks
-2. **Quality Validation** - Runs inline checks:
-   - Detects project type (package.json, requirements.txt, etc.)
-   - Executes compile/build commands
-   - Runs full test suite
-   - Checks and auto-fixes linting/formatting
-   - Validates types (if applicable)
-3. **Update Status** - Based on validation results:
-   - ✅ **Quality Pass**: 🔄 → 🎉 + auto-start next task
-   - ❌ **Quality Fail**: Keep 🔄 + show specific issues to fix
+1. **Requirements Phase** - Requirements Specialist generates EARS-format specs:
+   - Analyzes project description
+   - Creates Ubiquitous, Event-Driven, State-Driven patterns
+   - Ensures testability and atomic requirements
+   - Outputs comprehensive REQUIREMENTS.md
 
-### 🔍 Quality Assurance
+2. **Design Phase** - Design Architect creates technical specifications:
+   - Reads requirements and analyzes architectural drivers
+   - Defines system components and interfaces
+   - Selects technology stack and patterns
+   - Outputs detailed DESIGN.md with implementation guidelines
 
-```bash
-claude /spec-validate
-```
+3. **Task Planning** - Task Planner breaks down into actionable work:
+   - Maps requirements to implementation tasks
+   - Assigns complexity estimates and dependencies
+   - Creates phased implementation roadmap
+   - Outputs structured TASK.md with full traceability
 
-**Validates:**
-- Specification completeness and consistency
-- Requirement traceability (orphaned requirements, unlinked tasks)
-- Cross-document alignment
-- EARS format compliance
-- Coverage analysis
+### 🔍 Specification Consistency
+
+Agent coordination ensures specification integrity:
+
+**Cross-Phase Validation:**
+- Design Architect validates against all requirements
+- Task Planner ensures complete requirement coverage
+- Each agent reads and builds upon previous phase outputs
+- .claude/WORKFLOW_CONTEXT.md maintains session continuity
+
+**EARS Format Compliance:**
+- Requirements Specialist enforces EARS patterns
+- Atomic, testable requirement generation
+- Clear acceptance criteria and system boundaries
+- Comprehensive error handling specifications
 
 ## Project Structure
 
 ```
 project/
-├── specs/                          # Specification documents
-│   ├── requirements.md             # User stories and requirements (REQ-X.Y, FR-X, NFR-X)
-│   ├── design.md                   # Technical architecture and decisions
-│   ├── tasks.md                    # Implementation tasks with emoji states
-│   └── api-spec.md                 # API documentation (optional)
 ├── .claude/                        # Claude Code configuration
-│   ├── commands/                   # 5 custom slash commands
-│   │   ├── spec-init.md            # Project initialization
-│   │   ├── spec-feat.md            # Feature development
-│   │   ├── spec-validate.md        # Validation and consistency
-│   │   ├── spec-work.md            # Start next task
-│   │   └── spec-done.md            # Complete with quality gates
-│   └── settings.local.json         # Hook-free configuration
+│   ├── PROJECT_STATE.md            # Workflow status tracking
+│   ├── WORKFLOW_CONTEXT.md         # Agent coordination context
+│   ├── PROJECT_CONTEXT.md  # Project overview and metadata
+│   ├── agents/                     # Specialized AI agents
+│   │   ├── requirements-specialist.md  # EARS format expert
+│   │   ├── design-architect.md         # Technical architecture
+│   │   └── task-planner.md             # Development task breakdown
+│   ├── commands/                   # 4 orchestrated slash commands
+│   │   ├── spec.md                 # Master orchestrator
+│   │   ├── requirements.md         # Requirements generation
+│   │   ├── design.md               # Design creation
+│   │   └── task.md                 # Task planning
+│   └── settings.local.json         # Agent permissions configuration
+├── specs/                          # Generated specifications
+│   ├── REQUIREMENTS.md             # EARS-format requirements
+│   ├── DESIGN.md                   # Technical architecture
+│   └── TASK.md                     # Structured task breakdown
 └── [your implementation files]
 ```
 
@@ -271,57 +301,57 @@ project/
 
 ### 📋 Specification Templates
 
-#### EARS Format Requirements
+#### EARS Format Requirements (Generated by Requirements Specialist)
 ```markdown
-#### REQ-1.1: User Login
-**WHEN** a user enters valid credentials
-**THE SYSTEM SHALL** authenticate and redirect to dashboard
-**WHERE** authentication server is available
+#### REQ-001 (Event-Driven)
+When a user submits valid login credentials, the system shall authenticate and return a JWT token
 
-**Acceptance Criteria:**
-- [ ] Login form validates email format
-- [ ] Password must be 8+ characters
-- [ ] Invalid credentials show error message
-- [ ] Successful login redirects to dashboard
+#### REQ-002 (State-Driven)
+While a user session is active, the system shall authorize API requests based on token validation
 
-**Priority**: High
-**Requirements**: REQ-1.1, FR-2, NFR-4
+#### REQ-003 (Unwanted Behavior)
+If login credentials are invalid, then the system shall return a 401 error with rate limiting applied
+
+#### REQ-004 (Optional)
+Where two-factor authentication is enabled, the system shall require secondary verification before token generation
 ```
 
-#### Task with Traceability
+#### Task with Traceability (Generated by Task Planner)
 ```markdown
-- [ ] ⚪ **Task 1.2**: Implement Login Form
-  - **Description**: React component with validation
-  - **Estimated Effort**: 4 hours
-  - **Dependencies**: Task 1.1
-  - **Files**: Login.tsx, Login.test.tsx, auth.service.ts
-  - _Requirements: REQ-1.1, FR-2, NFR-4_
+- [ ] [TASK-010] Implement JWT Authentication Service
+  - **Complexity**: M
+  - **Priority**: P0
+  - **Dependencies**: TASK-001 (Database setup)
+  - **Requirements**: REQ-001, REQ-002, REQ-003
+  - **Files**: src/services/auth.service.js, src/middleware/jwt.middleware.js
+  - **Details**: Create JWT token generation and validation service
 ```
 
 
 ## Team Collaboration
 
-### 🤝 Zero Interference Approach
+### 🤝 Agent-Powered Collaboration
 
-- **No Hooks** - Won't trigger on commits or file changes
-- **No Background Processes** - All actions are explicit and visible
-- **Individual Choice** - Each developer can use or ignore the system
-- **Shared Benefits** - Specifications benefit everyone, automation is optional
+- **Intelligent Automation** - AI agents handle specification generation
+- **No Background Processes** - All agent actions are explicit and traceable
+- **Individual Choice** - Each developer can use agents or access specifications directly
+- **Shared Intelligence** - AI-generated specifications benefit the entire team
+- **Context Preservation** - .claude/WORKFLOW_CONTEXT.md maintains session continuity
 
 ### 👥 Best Practices
 
 #### **For New Projects**
-1. **Team Spec Writing** - Collaborative requirements gathering and design sessions
-2. **Individual Implementation** - Developers use `/spec-work` and `/spec-done` workflow
-3. **Regular Validation** - Team runs `/spec-validate` before major milestones
-4. **Living Documentation** - Specifications evolve with implementation
+1. **AI-Assisted Specification** - Use `/spec` for complete requirements, design, and task generation
+2. **Collaborative Refinement** - Team reviews and refines AI-generated specifications
+3. **Phase-Specific Updates** - Use `/requirements`, `/design`, `/task` for targeted improvements
+4. **Living Documentation** - Re-run agents as project evolves
 
 #### **For Existing Projects**
-1. **Gradual Adoption** - Start with `/spec-init` to document current state
-2. **Systematic Documentation** - Use generated tasks to document critical features
-3. **Technical Debt Management** - Address high-priority gaps systematically
-4. **Feature Enhancement** - Use `/spec-feat` for new functionality
-5. **Knowledge Sharing** - Generated specs help with team onboarding
+1. **Documentation Generation** - Use `/spec` to create specifications for existing features
+2. **Architecture Analysis** - Design Architect agent analyzes current codebase structure
+3. **Gap Identification** - Task Planner identifies documentation and improvement opportunities
+4. **Incremental Enhancement** - Use individual phase commands for specific improvements
+5. **Knowledge Capture** - AI agents help document tribal knowledge systematically
 
 ## Installation Options
 
@@ -347,33 +377,33 @@ cp -r cc-sdd/specs /path/to/your/project/
 
 ### ✅ Verify Installation
 ```bash
-claude /spec-validate   # Test command availability
+claude /spec "Test project"   # Test command availability
 ```
 
 ## Benefits
 
 ### For Developers
-- **Clear Direction** - Always know what to work on next with prioritized task queues
-- **Quality Confidence** - Automated validation prevents regressions
-- **Reduced Context Switching** - Seamless task transitions with workflow automation
-- **No Workflow Disruption** - Hook-free approach respects individual preferences
-- **Legacy Understanding** - Reverse-engineered specs help understand existing codebases
+- **AI-Generated Clarity** - Precise EARS-format requirements eliminate ambiguity
+- **Intelligent Task Breakdown** - Task Planner creates optimal implementation sequences
+- **Architecture Guidance** - Design Architect provides technical implementation roadmaps
+- **No Workflow Disruption** - Agent-based approach integrates seamlessly
+- **Context Preservation** - Workflow context maintained across development sessions
 
 ### For Teams
-- **Universal Adoption** - Works with new projects AND existing codebases
-- **Shared Understanding** - Comprehensive specifications reduce miscommunication
-- **Progress Visibility** - Emoji states show real-time progress across all work
-- **Requirement Traceability** - Track business needs through implementation
-- **Systematic Improvement** - Organized approach to technical debt and enhancements
-- **Flexible Adoption** - Use as much or as little as desired
+- **Universal Adoption** - AI agents work with any project type or technology stack
+- **Shared Intelligence** - AI-generated specifications provide consistent quality
+- **Requirement Precision** - EARS format eliminates interpretation ambiguity
+- **Full Traceability** - Requirements flow through design to implementation tasks
+- **Systematic Approach** - Agent coordination ensures comprehensive coverage
+- **Scalable Adoption** - Use individual agents or complete orchestrated workflow
 
 ### For Projects
-- **Better Planning** - Detailed task breakdown improves estimates
-- **Living Documentation** - Specifications evolve with implementation
-- **Quality Assurance** - Built-in validation prevents technical debt
-- **Rapid Onboarding** - New team members understand system design quickly
-- **Legacy Modernization** - Systematic approach to improving existing systems
-- **Technical Debt Management** - Prioritized roadmap for improvements
+- **AI-Enhanced Planning** - Intelligent task breakdown with dependency analysis
+- **Living Specifications** - Agent-generated docs evolve with project needs
+- **Consistent Quality** - EARS format ensures testable, atomic requirements
+- **Rapid Knowledge Transfer** - AI-generated architecture documentation accelerates onboarding
+- **Systematic Evolution** - Agent coordination manages specification complexity
+- **Intelligent Prioritization** - Task Planner optimizes development sequences
 
 ## Contributing
 

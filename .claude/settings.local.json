@@ -9,5 +9,18 @@
       "Bash(ls:*)"
     ],
     "deny": []
+  },
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo 'File updated: $CLAUDE_FILE_PATHS' >> .claude/activity.log"
+          }
+        ]
+      }
+    ]
   }
 }
