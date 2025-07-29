@@ -30,18 +30,50 @@ fi
 
 # Create directories
 echo -e "${Y}📁 Creating directories...${NC}"
-mkdir -p .claude/commands specs
+mkdir -p .claude/commands/cc-sdd specs
 
-# Copy commands
-echo -e "${Y}📝 Installing slash commands...${NC}"
-for cmd in spec-init.md spec-feat.md spec-validate.md spec-work.md spec-done.md; do
-    if [ -f "$SOURCE_DIR/.claude/commands/$cmd" ]; then
-        cp "$SOURCE_DIR/.claude/commands/$cmd" ".claude/commands/"
-        echo -e "${G}✅ $cmd${NC}"
+# Copy namespaced commands (overwrite if they exist)
+echo -e "${Y}📝 Installing cc-sdd slash commands...${NC}"
+for cmd in spec.md requirements.md design.md task.md start-task.md; do
+    if [ -f "$SOURCE_DIR/.claude/commands/cc-sdd/$cmd" ]; then
+        cp "$SOURCE_DIR/.claude/commands/cc-sdd/$cmd" ".claude/commands/cc-sdd/"
+        echo -e "${G}✅ cc-sdd/$cmd${NC}"
     else
-        echo -e "${R}❌ Missing: $cmd${NC}"
+        echo -e "${R}❌ Missing: cc-sdd/$cmd${NC}"
     fi
 done
+
+# Copy agents (overwrite if they exist)
+echo -e "${Y}🤖 Installing cc-sdd AI agents...${NC}"
+mkdir -p .claude/agents
+for agent in requirements-specialist.md design-architect.md task-planner.md; do
+    if [ -f "$SOURCE_DIR/.claude/agents/$agent" ]; then
+        cp "$SOURCE_DIR/.claude/agents/$agent" ".claude/agents/"
+        echo -e "${G}✅ $agent${NC}"
+    else
+        echo -e "${R}❌ Missing: $agent${NC}"
+    fi
+done
+
+# Copy state management files (only if they don't exist)
+echo -e "${Y}📋 Installing state management...${NC}"
+for state_file in PROJECT_STATE.md WORKFLOW_CONTEXT.md; do
+    if [ ! -f ".claude/$state_file" ] && [ -f "$SOURCE_DIR/.claude/$state_file" ]; then
+        cp "$SOURCE_DIR/.claude/$state_file" ".claude/"
+        echo -e "${G}✅ $state_file${NC}"
+    elif [ -f ".claude/$state_file" ]; then
+        echo -e "${B}ℹ️ Preserving existing: $state_file${NC}"
+    else
+        echo -e "${Y}⚠️ Source not found: $state_file${NC}"
+    fi
+done
+
+# Preserve existing CLAUDE.md
+if [ -f "CLAUDE.md" ]; then
+    echo -e "${B}ℹ️ Preserving existing: CLAUDE.md${NC}"
+else
+    echo -e "${Y}ℹ️ No existing CLAUDE.md found - will be created by /cc-sdd/spec${NC}"
+fi
 
 
 # Copy configuration (merge with existing if present)
@@ -77,20 +109,6 @@ else
 fi
 
 
-# Copy templates (only if they don't exist)
-echo -e "${Y}📋 Installing specification templates...${NC}"
-for template in requirements.md design.md tasks.md api-spec.md; do
-    if [ ! -f "specs/$template" ]; then
-        if [ -f "$SOURCE_DIR/specs/$template" ]; then
-            cp "$SOURCE_DIR/specs/$template" "specs/"
-            echo -e "${G}✅ $template${NC}"
-        else
-            echo -e "${R}❌ Missing source: $template${NC}"
-        fi
-    else
-        echo -e "${B}ℹ️ Already exists: specs/$template${NC}"
-    fi
-done
 
 
 # Note: .gitignore management left to user preference
@@ -100,17 +118,19 @@ echo ""
 echo -e "${G}🎉 Installation complete!${NC}"
 echo ""
 echo -e "${B}Quick start:${NC}"
-echo -e "1. ${Y}claude /spec-init${NC}     - Initialize your project specifications"
-echo -e "2. ${Y}claude /spec-work${NC}     - Start working (auto-selects task + quality validation)"
-echo -e "3. ${Y}claude /spec-done${NC}     - Complete task + start next (seamless flow)"
+echo -e "1. ${Y}claude /cc-sdd/spec \"Your project description\"${NC} - Generate complete specifications"
+echo -e "2. ${Y}claude /cc-sdd/requirements \"Additional requirements\"${NC} - Refine requirements"
+echo -e "3. ${Y}claude /cc-sdd/design \"Architecture focus\"${NC} - Update technical design"
+echo -e "4. ${Y}claude /cc-sdd/task \"Component focus\"${NC} - Modify task breakdown"
+echo -e "5. ${Y}claude /cc-sdd/start-task \"Implementation planning\"${NC} - Create integrated todo list"
 echo -e ""
-echo -e "${B}🚀 Hook-Free Workflow: /spec-work → /spec-done → /spec-done...${NC}"
-echo -e "${B}✨ No hooks, no interference, no background processes!${NC}"
+echo -e "${B}🤖 Agent-Powered Workflow: Requirements → Design → Tasks → Todo Planning${NC}"
+echo -e "${B}✨ AI agents handle specification generation automatically!${NC}"
 echo ""
-echo -e "${B}Streamlined 5-Command Workflow:${NC}"
-echo -e "  ${Y}/spec-init${NC}     - Initialize project specifications (setup)"
-echo -e "  ${Y}/spec-tasks${NC}    - Generate implementation tasks from requirements"
-echo -e "  ${Y}/spec-validate${NC} - Validate specifications and traceability"
-echo -e "  ${Y}/spec-work${NC}     - Auto-select and start next task"
-echo -e "  ${Y}/spec-done${NC}     - Complete task + start next (with quality gates)"
+echo -e "${B}Agent-Powered 5-Command System:${NC}"
+echo -e "  ${Y}/cc-sdd/spec${NC}         - Master orchestrator (complete workflow)"
+echo -e "  ${Y}/cc-sdd/requirements${NC} - EARS-format requirements generation"
+echo -e "  ${Y}/cc-sdd/design${NC}       - Technical architecture and design"
+echo -e "  ${Y}/cc-sdd/task${NC}         - Development task breakdown"
+echo -e "  ${Y}/cc-sdd/start-task${NC}   - Integrated todo planning"
 echo ""
