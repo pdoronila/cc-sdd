@@ -62,13 +62,20 @@ NEVER save files without explicit user approval.
    ```bash
    mkdir -p specs
    # Add project context to CLAUDE.md (append if exists, create if not)
-   echo "" >> CLAUDE.md
-   echo "-----" >> CLAUDE.md
-   echo "# Spec-Driven Development Project" >> CLAUDE.md
-   echo "Project: $ARGUMENTS" >> CLAUDE.md
-   echo "Created: $(date)" >> CLAUDE.md
-   echo "Generated using cc-sdd workflow" >> CLAUDE.md
-   echo "-----" >> CLAUDE.md
+   if [ ! -f "CLAUDE.md" ]; then
+     touch CLAUDE.md
+   fi
+   
+   # Check if project context already exists to avoid duplicates
+   if ! grep -q "Generated using cc-sdd workflow" CLAUDE.md; then
+     echo "" >> CLAUDE.md
+     echo "-----" >> CLAUDE.md
+     echo "# Spec-Driven Development Project" >> CLAUDE.md
+     echo "Project: $ARGUMENTS" >> CLAUDE.md
+     echo "Created: $(date)" >> CLAUDE.md
+     echo "Generated using cc-sdd workflow" >> CLAUDE.md
+     echo "-----" >> CLAUDE.md
+   fi
    ```
 
 2. Execute requirements phase:
