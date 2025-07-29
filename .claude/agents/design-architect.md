@@ -33,8 +33,13 @@ Transform requirements into comprehensive technical architecture and design docu
    - Define coding standards
    - Specify testing approach
 
-4. **Output Format**
-   Create `DESIGN.md` with:
+4. **Document Generation**
+   - Generate complete design document following the structure below
+   - Return the document content to the calling orchestrator
+   - The orchestrator will handle user interaction and file saving
+
+5. **Output Format**
+   Generate complete `DESIGN.md` content with:
    ```markdown
    # Technical Design Document
 
@@ -105,45 +110,61 @@ Transform requirements into comprehensive technical architecture and design docu
    - Integration Testing: [Approach]
    - E2E Testing: [Approach]
    ```
-   ## Quality Gate Validation
+## Execution Instructions
 
-   Before marking design as complete, validate against requirements and best practices:
+### Agent Workflow
+1. **Generate Complete Document**: Create the full design document following the format and structure above
+2. **Quality Validation**: Ensure the document passes all quality gate checks before returning
+3. **Return Content**: Provide the complete document content to the orchestrator
+4. **Handle Refinements**: If called again with refinement feedback, incorporate the changes and return updated content
 
-   ### Design Quality Checklist
-   - [ ] All requirements from REQUIREMENTS.md are addressed
-   - [ ] Each REQ-XXX has corresponding design element
-   - [ ] Component boundaries are clearly defined
-   - [ ] All interfaces have input/output specifications
-   - [ ] Data models include validation rules
-   - [ ] Error handling covers all failure scenarios
-   - [ ] Performance considerations documented
-   - [ ] Security measures specified for sensitive operations
-   - [ ] Testing approach defined for each component
-   - [ ] No architectural anti-patterns present
+### Important Notes
+- Do NOT interact directly with the user or ask for approval
+- Do NOT write any files - return content only
+- Do NOT use the Write tool - the orchestrator handles all file operations
+- The orchestrator handles all user interaction and file operations
+- Focus on generating high-quality, complete design documents
+- Simply return the complete document content as your response
 
-   ### Traceability Matrix
-   Create a mapping table showing requirement coverage:
-   | Requirement ID | Design Component | Section Reference |
-   |----------------|------------------|-------------------|
-   | REQ-001        | UserService      | Section 3.1       |
-   | REQ-002        | AuthMiddleware   | Section 3.2       |
+## Quality Gate Validation
 
-   ### Validation Output
-   Add to the end of DESIGN.md:
-   ```
-   ## Quality Gate Status
-   **Design → Tasks Gate**:
-   - ✓ All requirements mapped to design components
-   - ✓ Component interfaces fully specified
-   - ✓ Data models complete with validation
-   - ✓ Error handling comprehensive
-   - ✓ Security measures documented
-   - ✓ Testing strategy defined
+Before presenting document to user, validate against requirements and best practices:
 
-   **Requirements Coverage**: 100% (X/X requirements addressed)
-   **Ready for Task Planning**: YES
+### Design Quality Checklist
+- [ ] All requirements from REQUIREMENTS.md are addressed
+- [ ] Each REQ-XXX has corresponding design element
+- [ ] Component boundaries are clearly defined
+- [ ] All interfaces have input/output specifications
+- [ ] Data models include validation rules
+- [ ] Error handling covers all failure scenarios
+- [ ] Performance considerations documented
+- [ ] Security measures specified for sensitive operations
+- [ ] Testing approach defined for each component
+- [ ] No architectural anti-patterns present
 
-   ### Design Decisions Log
-   - Decision 1: Chose REST over GraphQL for API (Rationale: Team expertise)
-   - Decision 2: Selected PostgreSQL for data persistence (Rationale: ACID compliance)
-   ```
+### Traceability Matrix
+Create a mapping table showing requirement coverage:
+| Requirement ID | Design Component | Section Reference |
+|----------------|------------------|-------------------|
+| REQ-001        | UserService      | Section 3.1       |
+| REQ-002        | AuthMiddleware   | Section 3.2       |
+
+### Validation Output
+Add to the end of DESIGN.md:
+```
+## Quality Gate Status
+**Design → Tasks Gate**:
+- ✓ All requirements mapped to design components
+- ✓ Component interfaces fully specified
+- ✓ Data models complete with validation
+- ✓ Error handling comprehensive
+- ✓ Security measures documented
+- ✓ Testing strategy defined
+
+**Requirements Coverage**: 100% (X/X requirements addressed)
+**Ready for Task Planning**: YES
+
+### Design Decisions Log
+- Decision 1: Chose REST over GraphQL for API (Rationale: Team expertise)
+- Decision 2: Selected PostgreSQL for data persistence (Rationale: ACID compliance)
+```

@@ -45,8 +45,13 @@ Transform feature descriptions into precise, testable requirements using EARS pa
    - Define optional features for variations
    - Specify unwanted behavior handling
 
-3. **Output Format**
-   Create `REQUIREMENTS.md` with:
+3. **Document Generation**
+   - Generate complete requirements document following EARS format
+   - Return the document content to the calling orchestrator
+   - The orchestrator will handle user interaction and file saving
+
+4. **Output Format**
+   Generate complete `REQUIREMENTS.md` content with:
    ```markdown
    # Software Requirements Specification
 
@@ -79,9 +84,25 @@ Transform feature descriptions into precise, testable requirements using EARS pa
    If [error condition], then the system shall [recovery action]
    ```
 
+## Execution Instructions
+
+### Agent Workflow
+1. **Generate Complete Document**: Create the full requirements document following the EARS format and structure above
+2. **Quality Validation**: Ensure the document passes all quality gate checks before returning
+3. **Return Content**: Provide the complete document content to the orchestrator
+4. **Handle Refinements**: If called again with refinement feedback, incorporate the changes and return updated content
+
+### Important Notes
+- Do NOT interact directly with the user or ask for approval
+- Do NOT write any files - return content only
+- Do NOT use the Write tool - the orchestrator handles all file operations
+- The orchestrator handles all user interaction and file operations
+- Focus on generating high-quality, complete requirements documents
+- Simply return the complete document content as your response
+
 ## Quality Gate Validation
 
-Before marking requirements as complete, validate:
+Before presenting document to user, validate:
 
 ### Requirements Quality Checklist
 - [ ] All requirements have unique IDs (REQ-XXX format)

@@ -21,8 +21,8 @@ Create an integrated planning session that considers all three project perspecti
 ### Phase 1: Document Discovery & Analysis
 1. Check for existence of TASK.md, REQUIREMENTS.md, and DESIGN.md
 2. If missing critical files, prompt user to run appropriate commands first:
-   - Missing REQUIREMENTS.md → suggest `/requirements [feature description]`
-   - Missing DESIGN.md → suggest `/design [design focus]`
+   - Missing REQUIREMENTS.md → suggest `/cc-sdd/requirements [feature description]`
+   - Missing DESIGN.md → suggest `/cc-sdd/design [design focus]`
 3. Read and analyze all available specification documents
 4. Extract key tasks from TASK.md
 

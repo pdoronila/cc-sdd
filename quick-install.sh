@@ -17,7 +17,7 @@ command -v curl >/dev/null 2>&1 || { echo -e "${R}❌ curl required${NC}"; exit 
 
 # Create directories
 echo -e "${Y}📁 Creating directories...${NC}"
-mkdir -p .claude/commands specs
+mkdir -p .claude/commands/cc-sdd specs
 
 # Download function
 dl() {
@@ -32,14 +32,14 @@ dl() {
 }
 
 # Download all files
-echo -e "${Y}⬇️  Downloading files...${NC}"
+echo -e "${Y}⬇️  Downloading cc-sdd commands...${NC}"
 
 # Commands (Agent-Powered 5-Command Set)
-dl ".claude/commands/spec.md" "Master orchestrator"
-dl ".claude/commands/requirements.md" "EARS-format requirements generation"
-dl ".claude/commands/design.md" "Technical architecture and design"
-dl ".claude/commands/task.md" "Development task breakdown"
-dl ".claude/commands/start-task.md" "Integrated todo planning"
+dl ".claude/commands/cc-sdd/spec.md" "Master orchestrator"
+dl ".claude/commands/cc-sdd/requirements.md" "EARS-format requirements generation"
+dl ".claude/commands/cc-sdd/design.md" "Technical architecture and design"
+dl ".claude/commands/cc-sdd/task.md" "Development task breakdown"
+dl ".claude/commands/cc-sdd/start-task.md" "Integrated todo planning"
 
 # AI Agents
 echo -e "${Y}🤖 Downloading AI agents...${NC}"
@@ -48,9 +48,19 @@ dl ".claude/agents/requirements-specialist.md" "Requirements specialist agent"
 dl ".claude/agents/design-architect.md" "Design architect agent"
 dl ".claude/agents/task-planner.md" "Task planner agent"
 
-# State management
-echo -e "${Y}📋 Downloading state management...${NC}"
-dl ".claude/PROJECT_STATE.md" "Project state tracker"
+# State management (only if they don't exist)
+echo -e "${Y}📋 Installing state management...${NC}"
+for state_file in PROJECT_STATE.md WORKFLOW_CONTEXT.md; do
+    if [ ! -f ".claude/$state_file" ]; then
+        if curl -sSL "$REPO/.claude/$state_file" -o ".claude/$state_file" --fail; then
+            echo -e "${G}✅ $state_file${NC}"
+        else
+            echo -e "${Y}⚠️ Optional file not available: $state_file${NC}"
+        fi
+    else
+        echo -e "${B}ℹ️ Preserving existing: $state_file${NC}"
+    fi
+done
 
 
 # Configuration (merge with existing if present)
@@ -89,25 +99,18 @@ else
 fi
 
 
-# Templates (only if they don't exist)
-echo -e "${Y}📋 Installing workflow context...${NC}"
-if [ ! -f ".claude/WORKFLOW_CONTEXT.md" ]; then
-    dl ".claude/WORKFLOW_CONTEXT.md" "Workflow context template"
-else
-    echo -e "${B}ℹ️  Skipping existing: .claude/WORKFLOW_CONTEXT.md${NC}"
-fi
 
 
 # Note: .gitignore management left to user preference
 
 echo -e "${G}🎉 Installation complete!${NC}"
 echo -e "\n${B}Quick start:${NC}"
-echo -e "1. ${Y}claude /spec \"Your project description\"${NC} - Generate complete specifications"
-echo -e "2. ${Y}claude /requirements \"Additional requirements\"${NC} - Refine requirements"
-echo -e "3. ${Y}claude /design \"Architecture focus\"${NC} - Update technical design"
-echo -e "4. ${Y}claude /task \"Component focus\"${NC} - Modify task breakdown"
-echo -e "5. ${Y}claude /start-task \"Implementation planning\"${NC} - Create integrated todo list"
+echo -e "1. ${Y}claude /cc-sdd/spec \"Your project description\"${NC} - Generate complete specifications"
+echo -e "2. ${Y}claude /cc-sdd/requirements \"Additional requirements\"${NC} - Refine requirements"
+echo -e "3. ${Y}claude /cc-sdd/design \"Architecture focus\"${NC} - Update technical design"
+echo -e "4. ${Y}claude /cc-sdd/task \"Component focus\"${NC} - Modify task breakdown"
+echo -e "5. ${Y}claude /cc-sdd/start-task \"Implementation planning\"${NC} - Create integrated todo list"
 echo -e "\n${B}🤖 Agent-Powered Workflow: Requirements → Design → Tasks → Todo Planning${NC}"
 echo -e "${B}📋 Features: EARS-format requirements, technical architecture, structured tasks${NC}"
 echo -e "${B}✨ AI agents handle specification generation automatically!${NC}"
-echo -e "${B}5 Agent-powered commands: /spec, /requirements, /design, /task, /start-task${NC}"
+echo -e "${B}5 Agent-powered commands: /cc-sdd/spec, /cc-sdd/requirements, /cc-sdd/design, /cc-sdd/task, /cc-sdd/start-task${NC}"

@@ -35,8 +35,13 @@ Transform requirements and design documents into a structured task list with cle
    - Documentation
    - DevOps & Deployment
 
-4. **Output Format**
-   Create or update `TASK.md`:
+4. **Document Generation**
+   - Generate complete task breakdown document following the structure below
+   - Return the document content to the calling orchestrator
+   - The orchestrator will handle user interaction and file saving
+
+5. **Output Format**
+   Generate complete `TASK.md` content with:
    ```markdown
    # Project Tasks
 
@@ -88,9 +93,25 @@ Transform requirements and design documents into a structured task list with cle
      - **Completed**: [Date]
      - **PR**: #1
 
+## Execution Instructions
+
+### Agent Workflow
+1. **Generate Complete Document**: Create the full task breakdown document following the format and structure above
+2. **Quality Validation**: Ensure the document passes all quality gate checks before returning
+3. **Return Content**: Provide the complete document content to the orchestrator
+4. **Handle Refinements**: If called again with refinement feedback, incorporate the changes and return updated content
+
+### Important Notes
+- Do NOT interact directly with the user or ask for approval
+- Do NOT write any files - return content only
+- Do NOT use the Write tool - the orchestrator handles all file operations
+- The orchestrator handles all user interaction and file operations
+- Focus on generating high-quality, complete task breakdown documents
+- Simply return the complete document content as your response
+
 ## Quality Gate Validation
 
-Before finalizing task list, ensure comprehensive coverage and proper planning:
+Before presenting document to user, ensure comprehensive coverage and proper planning:
 
 ### Task Planning Quality Checklist
 - [ ] Every design component has implementation tasks
