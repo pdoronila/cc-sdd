@@ -8,22 +8,7 @@ argument-hint: "project description"
 
 You are the master orchestrator for spec-driven development. Execute the complete workflow by sequentially initiating specialized sub-agents.
 
-**CRITICAL INSTRUCTION**: You MUST get user approval before saving any documents. Follow this exact process:
-
-1. Generate document content using the sub-agent (agent returns content only)
-2. Present the COMPLETE document content to the user in a clear, formatted way
-3. After showing the document, ask: "📋 **Document Ready for Review**
-
-Please choose an option:
-- Type **"save"** to save this document and proceed to the next phase
-- Type **"refine [your specific feedback]"** to make improvements
-
-What would you like to do?"
-4. WAIT for user response - do NOT proceed until they respond
-5. If user says "save": Use Write tool to create the file
-6. If user says "refine": Use their feedback to call the sub-agent again with refinement instructions
-
-NEVER save files without explicit user approval.
+**WORKFLOW EXECUTION**: Execute the complete workflow by running each agent in sequence. Agents will directly create their respective files.
 
 ## Context
 - Project description: $ARGUMENTS
@@ -32,26 +17,20 @@ NEVER save files without explicit user approval.
 
 ## Workflow Execution
 
-1. **Requirements Phase** (Interactive)
+1. **Requirements Phase**
    - Create initial project context in `CLAUDE.md`
-   - Use requirements sub-agent to generate EARS format requirements document
-   - Present the generated document directly to user for review
-   - Handle user approval/refinement requests in main conversation
-   - Output: `REQUIREMENTS.md` (only created after user approval)
+   - Use requirements sub-agent to generate and write `specs/REQUIREMENTS.md`
+   - Agent writes file directly, no user interaction required
 
-2. **Design Phase** (Interactive)  
+2. **Design Phase**
    - Ensure requirements exist and are complete
-   - Use design sub-agent to generate technical architecture document
-   - Present the generated document directly to user for review
-   - Handle user approval/refinement requests in main conversation
-   - Output: `DESIGN.md` (only created after user approval)
+   - Use design sub-agent to generate and write `specs/DESIGN.md`
+   - Agent writes file directly, no user interaction required
 
-3. **Task Planning Phase** (Interactive)
+3. **Task Planning Phase**
    - Verify requirements and design documents exist
-   - Use task sub-agent to generate task breakdown document  
-   - Present the generated document directly to user for review
-   - Handle user approval/refinement requests in main conversation
-   - Output: `TASK.md` with structured tasks (only created after user approval)
+   - Use task sub-agent to generate and write `specs/TASK.md`
+   - Agent writes file directly, no user interaction required
 
 4. **State Persistence**
    - Update `.claude/PROJECT_STATE.md` with current workflow status
@@ -79,25 +58,13 @@ NEVER save files without explicit user approval.
    ```
 
 2. Execute requirements phase:
-   - Use the requirements sub-agent to generate EARS-format requirements (agent returns content only)
-   - Present the complete document content to the user for review
-   - Ask for user approval before saving
-   - WAIT for user response
-   - If user approves: Save to `specs/REQUIREMENTS.md` and proceed to design phase
-   - If user requests refinement: Get feedback and call requirements sub-agent again
+   - Use the requirements sub-agent to generate and write `specs/REQUIREMENTS.md`
+   - Agent handles all file operations directly
 
 3. Execute design phase:
-   - Use the design sub-agent to create technical design (agent returns content only)
-   - Present the complete document content to the user for review
-   - Ask for user approval before saving
-   - WAIT for user response
-   - If user approves: Save to `specs/DESIGN.md` and proceed to task planning phase
-   - If user requests refinement: Get feedback and call design sub-agent again
+   - Use the design sub-agent to generate and write `specs/DESIGN.md`
+   - Agent handles all file operations directly
 
 4. Execute task planning:
-   - Use the task sub-agent to create actionable tasks (agent returns content only)
-   - Present the complete document content to the user for review
-   - Ask for user approval before saving
-   - WAIT for user response
-   - If user approves: Save to `specs/TASK.md` and complete the workflow
-   - If user requests refinement: Get feedback and call task sub-agent again
+   - Use the task sub-agent to generate and write `specs/TASK.md`
+   - Agent handles all file operations directly

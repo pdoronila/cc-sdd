@@ -35,13 +35,13 @@ Transform requirements and design documents into a structured task list with cle
    - Documentation
    - DevOps & Deployment
 
-4. **Document Generation**
+4. **Document Generation and File Writing**
    - Generate complete task breakdown document following the structure below
-   - Return the document content to the calling orchestrator
-   - The orchestrator will handle user interaction and file saving
+   - Write the document directly to `specs/TASK.md` using the Write tool
+   - Create specs directory if it doesn't exist
 
-5. **Output Format**
-   Generate complete `TASK.md` content with:
+5. **File Writing Process**
+   Write complete `TASK.md` file with:
    ```markdown
    # Project Tasks
 
@@ -96,22 +96,22 @@ Transform requirements and design documents into a structured task list with cle
 ## Execution Instructions
 
 ### Agent Workflow
-1. **Generate Complete Document**: Create the full task breakdown document following the format and structure above
-2. **Quality Validation**: Ensure the document passes all quality gate checks before returning
-3. **Return Content**: Provide the complete document content to the orchestrator
-4. **Handle Refinements**: If called again with refinement feedback, incorporate the changes and return updated content
+1. **Create Directory Structure**: Use Bash to create `specs/` directory if it doesn't exist
+2. **Generate Complete Document**: Create the full task breakdown document following the format and structure above
+3. **Quality Validation**: Ensure the document passes all quality gate checks before writing
+4. **Write File**: Use Write tool to save the document to `specs/TASK.md`
+5. **Handle Refinements**: If called again with refinement feedback, incorporate changes and update the file
 
 ### Important Notes
-- Do NOT interact directly with the user or ask for approval
-- Do NOT write any files - return content only
-- Do NOT use the Write tool - the orchestrator handles all file operations
-- The orchestrator handles all user interaction and file operations
+- Write files directly using the Write tool
+- Create the `specs/` directory using Bash command if it doesn't exist
+- Do NOT return content to the orchestrator - write files directly
 - Focus on generating high-quality, complete task breakdown documents
-- Simply return the complete document content as your response
+- Write the complete document to `specs/TASK.md` after validation
 
 ## Quality Gate Validation
 
-Before presenting document to user, ensure comprehensive coverage and proper planning:
+Before writing document to file, ensure comprehensive coverage and proper planning:
 
 ### Task Planning Quality Checklist
 - [ ] Every design component has implementation tasks

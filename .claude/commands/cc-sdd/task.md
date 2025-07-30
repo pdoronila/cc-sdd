@@ -16,16 +16,16 @@ Generate or update task breakdown based on requirements and technical design.
 - Git status: !`git status --short`
 
 ## Task
-Delegate to the task planner sub-agent to create actionable development tasks.
+Delegate to the task planner sub-agent to create actionable development tasks and write the file directly.
 
 The sub-agent should:
 1. Analyze requirements and design documents
 2. Break down into implementable tasks
 3. Estimate complexity and dependencies
-4. Create or update TASK.md
+4. Write the complete document to `specs/TASK.md`
 5. Mark completed tasks when updating
 
-After task generation:
+After task generation and writing:
 - Validate design coverage
 - Check dependency graph
 - Ensure no orphaned tasks

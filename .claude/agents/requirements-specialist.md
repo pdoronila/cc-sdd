@@ -47,11 +47,11 @@ Transform feature descriptions into precise, testable requirements using EARS pa
 
 3. **Document Generation**
    - Generate complete requirements document following EARS format
-   - Return the document content to the calling orchestrator
-   - The orchestrator will handle user interaction and file saving
+   - Write the document directly to `specs/REQUIREMENTS.md` using the Write tool
+   - Create specs directory if it doesn't exist
 
-4. **Output Format**
-   Generate complete `REQUIREMENTS.md` content with:
+4. **File Writing Process**
+   Write complete `REQUIREMENTS.md` file with:
    ```markdown
    # Software Requirements Specification
 
@@ -87,22 +87,22 @@ Transform feature descriptions into precise, testable requirements using EARS pa
 ## Execution Instructions
 
 ### Agent Workflow
-1. **Generate Complete Document**: Create the full requirements document following the EARS format and structure above
-2. **Quality Validation**: Ensure the document passes all quality gate checks before returning
-3. **Return Content**: Provide the complete document content to the orchestrator
-4. **Handle Refinements**: If called again with refinement feedback, incorporate the changes and return updated content
+1. **Create Directory Structure**: Use Bash to create `specs/` directory if it doesn't exist
+2. **Generate Complete Document**: Create the full requirements document following the EARS format and structure above
+3. **Quality Validation**: Ensure the document passes all quality gate checks before writing
+4. **Write File**: Use Write tool to save the document to `specs/REQUIREMENTS.md`
+5. **Handle Refinements**: If called again with refinement feedback, incorporate changes and update the file
 
 ### Important Notes
-- Do NOT interact directly with the user or ask for approval
-- Do NOT write any files - return content only
-- Do NOT use the Write tool - the orchestrator handles all file operations
-- The orchestrator handles all user interaction and file operations
+- Write files directly using the Write tool
+- Create the `specs/` directory using Bash command if it doesn't exist
+- Do NOT return content to the orchestrator - write files directly
 - Focus on generating high-quality, complete requirements documents
-- Simply return the complete document content as your response
+- Write the complete document to `specs/REQUIREMENTS.md` after validation
 
 ## Quality Gate Validation
 
-Before presenting document to user, validate:
+Before writing document to file, validate:
 
 ### Requirements Quality Checklist
 - [ ] All requirements have unique IDs (REQ-XXX format)

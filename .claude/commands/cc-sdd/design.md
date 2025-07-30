@@ -15,7 +15,7 @@ Generate or refine technical design based on requirements.
 - Project structure: !`tree -L 2 -I 'node_modules|.git'`
 
 ## Task
-Delegate to the design architect sub-agent to create comprehensive technical design documentation.
+Delegate to the design architect sub-agent to create comprehensive technical design documentation and write the file directly.
 
 The sub-agent should:
 1. Read and analyze all requirements
@@ -23,8 +23,9 @@ The sub-agent should:
 3. Define component structure
 4. Specify interfaces and data flow
 5. Document technology choices
+6. Write the complete document to `specs/DESIGN.md`
 
-After creating design:
+After creating and writing design:
 - Validate all requirements are covered
 - Generate traceability matrix
 - Check for design completeness
