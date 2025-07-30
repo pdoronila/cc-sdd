@@ -51,6 +51,17 @@ Create a focused planning session for the first non-completed task, integrating 
 2. **User Review Required**: Present task-focused plan and wait for user approval
 3. Keep todo list active for tracking progress on this specific task
 
+### Phase 5: Task Completion Tracking
+**IMPORTANT**: After the task implementation is complete (when all todo items are marked as completed):
+1. **Auto-mark Task Complete**: When all todo items for the current task are completed, automatically mark the corresponding task as complete in specs/TASK.md
+2. **Update Task Status**: Change the markdown checkbox from `- [ ]` to `- [x]` for the completed task
+3. **Task Completion Logic**: 
+   - Monitor todo list completion status
+   - When all todos for the focused task are marked completed, update TASK.md
+   - Find the specific task line in TASK.md and mark it as completed
+   - Preserve all task metadata (complexity, priority, dependencies, etc.)
+4. **Confirmation**: Inform user that the task has been marked as complete in specs/TASK.md
+
 ## Quality Gates
 - Single task focus is maintained throughout planning
 - Git status failures do not interrupt the planning process
@@ -59,3 +70,5 @@ Create a focused planning session for the first non-completed task, integrating 
 - Task dependencies are identified and addressed
 - Implementation approach is clear and feasible
 - Plan provides sufficient detail to begin implementation
+- Task completion is automatically tracked in specs/TASK.md when all todos are completed
+- Task status updates preserve all metadata and formatting in TASK.md
