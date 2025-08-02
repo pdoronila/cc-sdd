@@ -21,11 +21,12 @@ This project provides a complete spec-driven development system that prioritizes
 **Specialized AI Agents:**
 - **Requirements Specialist** - EARS-format requirements generation
 - **Design Architect** - Technical architecture and component design
+- **QA Tester** - Comprehensive test planning with requirement traceability
 - **Task Planner** - Development task breakdown with dependencies
 
 #### **Complete Workflow Commands**
 - **`/cc-sdd/spec`** - Master orchestrator that runs all phases ⭐
-  - Generates requirements, design, and tasks in sequence with user approval
+  - Generates requirements, design, testing, and tasks in sequence with user approval
   - Uses specialized agents for each phase
   - Interactive refinement loop - review and approve each document
   - Creates complete project specifications
@@ -33,12 +34,13 @@ This project provides a complete spec-driven development system that prioritizes
 #### **Individual Phase Commands**
 - **`/cc-sdd/requirements`** - Generate/refine EARS-format requirements ⭐
 - **`/cc-sdd/design`** - Create technical architecture and design ⭐
+- **`/cc-sdd/test`** - Generate/refine comprehensive test plans ⭐
 - **`/cc-sdd/task`** - Break down into actionable development tasks ⭐
 - **`/cc-sdd/start-task`** - Integrate all specs into comprehensive todo planning ⭐
 
 ### 🤖 AI Agent Architecture
 
-Three specialized agents handle different aspects of specification:
+Four specialized agents handle different aspects of specification:
 
 #### **Requirements Specialist Agent**
 - **EARS Format Expert**: Creates precise, testable requirements
@@ -52,9 +54,16 @@ Three specialized agents handle different aspects of specification:
 - **Technology Selection**: Chooses appropriate frameworks, patterns, and tools
 - **Tools**: Read, Write, Bash (directory analysis), WebSearch for architecture research
 
+#### **QA Tester Agent**
+- **Test Planning**: Creates comprehensive test plans with full requirement traceability
+- **Test Strategy**: Defines unit, integration, and acceptance test coverage
+- **Traceability Matrix**: Maps every requirement to specific test cases
+- **Tools**: Read, Write, Bash (test execution) for comprehensive test coverage
+
 #### **Task Planner Agent**
 - **Task Breakdown**: Converts design into implementable development tasks
 - **Dependency Management**: Identifies task dependencies and optimal sequencing
+- **Test Integration**: Includes test requirements in every task
 - **Complexity Estimation**: Assigns effort estimates (S/M/L/XL) and priorities (P0/P1/P2)
 - **Tools**: Read, Write, Bash (git integration) for project state management
 
@@ -76,10 +85,11 @@ Task breakdown with comprehensive metadata in `specs/TASK.md`:
   - **Priority**: P0 (P0/P1/P2)
   - **Dependencies**: TASK-002
   - **Requirements**: REQ-001, REQ-010
+  - **Testing**: TEST-001, TEST-002 (Unit + Integration)
   - **Files**: src/components/component.js
 ```
 
-Agent-generated tasks include full traceability and project context.
+Agent-generated tasks include full traceability and project context with comprehensive test coverage.
 
 ### 🔗 EARS-Format Requirements
 
@@ -151,6 +161,7 @@ claude /cc-sdd/spec "Your project description here"
 - `CLAUDE.md` - Project overview and metadata (standard Claude Code context file)
 - `specs/REQUIREMENTS.md` - EARS-format functional requirements
 - `specs/DESIGN.md` - Technical architecture and component design
+- `specs/TEST.md` - Comprehensive test plan with requirement traceability
 - `specs/TASK.md` - Structured task breakdown with dependencies
 - `.claude/WORKFLOW_CONTEXT.md` - Session context and agent coordination
 
@@ -158,6 +169,7 @@ claude /cc-sdd/spec "Your project description here"
 ```bash
 claude /cc-sdd/requirements "Additional feature requirements"
 claude /cc-sdd/design "Focus on authentication architecture"
+claude /cc-sdd/test "Focus on authentication testing"
 claude /cc-sdd/task "Break down frontend components"
 claude /cc-sdd/start-task "Create implementation todo list"
 ```
@@ -172,6 +184,7 @@ claude /cc-sdd/spec "E-commerce platform with user authentication"
 # Refine individual phases
 claude /cc-sdd/requirements "Add payment processing requirements"
 claude /cc-sdd/design "Update architecture for microservices"
+claude /cc-sdd/test "Focus on payment processing testing"
 claude /cc-sdd/task "Focus on user authentication tasks"
 
 # Re-run complete workflow for new features
@@ -184,11 +197,12 @@ claude /cc-sdd/spec "Add shopping cart and checkout functionality"
 
 ```bash
 # Complete specification generation with interactive approval
-claude /cc-sdd/spec "Project description"  # Full Requirements → Design → Tasks workflow
+claude /cc-sdd/spec "Project description"  # Full Requirements → Design → Testing → Tasks workflow
 
 # Phase-specific refinements
 claude /cc-sdd/requirements "Additional requirements"  # EARS-format requirement generation
 claude /cc-sdd/design "Architecture focus area"        # Technical design refinement
+claude /cc-sdd/test "Testing focus area"               # Test plan refinement
 claude /cc-sdd/task "Component focus"                  # Task breakdown updates
 claude /cc-sdd/start-task "Implementation planning"    # Integrated todo list creation
 
@@ -254,8 +268,15 @@ claude /cc-sdd/start-task "Implementation planning"    # Integrated todo list cr
    - Selects technology stack and patterns
    - Outputs detailed DESIGN.md with implementation guidelines
 
-3. **Task Planning** - Task Planner breaks down into actionable work:
+3. **Testing Phase** - QA Tester creates comprehensive test plans:
+   - Maps every requirement to specific test cases
+   - Defines unit, integration, and acceptance tests
+   - Creates test traceability matrix
+   - Outputs detailed TEST.md with full requirement coverage
+
+4. **Task Planning** - Task Planner breaks down into actionable work:
    - Maps requirements to implementation tasks
+   - Includes test requirements in every task
    - Assigns complexity estimates and dependencies
    - Creates phased implementation roadmap
    - Outputs structured TASK.md with full traceability
@@ -266,7 +287,8 @@ Agent coordination ensures specification integrity:
 
 **Cross-Phase Validation:**
 - Design Architect validates against all requirements
-- Task Planner ensures complete requirement coverage
+- QA Tester ensures complete requirement test coverage
+- Task Planner includes test requirements in every task
 - Each agent reads and builds upon previous phase outputs
 - .claude/WORKFLOW_CONTEXT.md maintains session continuity
 
@@ -286,17 +308,20 @@ project/
 │   ├── agents/                     # Specialized AI agents
 │   │   ├── requirements-specialist.md  # EARS format expert
 │   │   ├── design-architect.md         # Technical architecture
+│   │   ├── qa-tester.md                # QA test planning expert
 │   │   └── task-planner.md             # Development task breakdown
 │   ├── commands/cc-sdd/            # Namespaced slash commands
 │   │   ├── spec.md                 # Master orchestrator
 │   │   ├── requirements.md         # Requirements generation
 │   │   ├── design.md               # Design creation
+│   │   ├── test.md                 # Test planning
 │   │   ├── task.md                 # Task planning
 │   │   └── start-task.md           # Todo integration
 │   └── settings.local.json         # Agent permissions configuration
 ├── specs/                          # Generated specifications
 │   ├── REQUIREMENTS.md             # EARS-format requirements
 │   ├── DESIGN.md                   # Technical architecture
+│   ├── TEST.md                     # Comprehensive test plan
 │   └── TASK.md                     # Structured task breakdown
 └── [your implementation files]
 ```
@@ -327,6 +352,7 @@ Where two-factor authentication is enabled, the system shall require secondary v
   - **Priority**: P0
   - **Dependencies**: TASK-001 (Database setup)
   - **Requirements**: REQ-001, REQ-002, REQ-003
+  - **Testing**: TEST-001, TEST-002 (Unit + Integration)
   - **Files**: src/services/auth.service.js, src/middleware/jwt.middleware.js
   - **Details**: Create JWT token generation and validation service
 ```
@@ -388,7 +414,8 @@ claude /spec "Test project"   # Test command availability
 
 ### For Developers
 - **AI-Generated Clarity** - Precise EARS-format requirements eliminate ambiguity
-- **Intelligent Task Breakdown** - Task Planner creates optimal implementation sequences
+- **Comprehensive Test Coverage** - QA Tester ensures every requirement is tested
+- **Intelligent Task Breakdown** - Task Planner creates optimal implementation sequences with test requirements
 - **Architecture Guidance** - Design Architect provides technical implementation roadmaps
 - **No Workflow Disruption** - Agent-based approach integrates seamlessly
 - **Context Preservation** - Workflow context maintained across development sessions
@@ -397,17 +424,20 @@ claude /spec "Test project"   # Test command availability
 - **Universal Adoption** - AI agents work with any project type or technology stack
 - **Shared Intelligence** - AI-generated specifications provide consistent quality
 - **Requirement Precision** - EARS format eliminates interpretation ambiguity
-- **Full Traceability** - Requirements flow through design to implementation tasks
+- **Full Test Traceability** - Requirements flow through testing to implementation tasks
 - **Systematic Approach** - Agent coordination ensures comprehensive coverage
+- **Quality Assurance** - Every feature includes comprehensive test planning
 - **Scalable Adoption** - Use individual agents or complete orchestrated workflow
 
 ### For Projects
 - **AI-Enhanced Planning** - Intelligent task breakdown with dependency analysis
 - **Living Specifications** - Agent-generated docs evolve with project needs
 - **Consistent Quality** - EARS format ensures testable, atomic requirements
+- **Built-in Quality Assurance** - Every requirement mapped to specific test cases
 - **Rapid Knowledge Transfer** - AI-generated architecture documentation accelerates onboarding
 - **Systematic Evolution** - Agent coordination manages specification complexity
-- **Intelligent Prioritization** - Task Planner optimizes development sequences
+- **Test-Driven Development** - Comprehensive test planning from day one
+- **Intelligent Prioritization** - Task Planner optimizes development sequences with testing requirements
 
 ## Contributing
 
