@@ -18,6 +18,7 @@ Transform requirements and design documents into a structured task list with cle
 1. **Document Analysis**
    - Read REQUIREMENTS.md for functional needs
    - Read DESIGN.md for technical components
+   - Read TEST.md for testing requirements and traceability
    - Check existing TASK.md for completed work
 
 2. **Task Breakdown Strategy**
@@ -69,6 +70,7 @@ Transform requirements and design documents into a structured task list with cle
      - **Complexity**: L
      - **Dependencies**: TASK-002
      - **Requirements**: REQ-001, REQ-002
+     - **Testing**: TEST-001, TEST-002 (Unit + Integration)
      - **Files**: `src/components/[name].js`
 
    ## Phase 2: Features (P1)
@@ -78,6 +80,7 @@ Transform requirements and design documents into a structured task list with cle
      - **Complexity**: M
      - **Dependencies**: TASK-010
      - **Requirements**: REQ-010
+     - **Testing**: TEST-003 (Integration)
      - **Details**: Implement POST /api/[resource]
 
    ## Phase 3: Polish (P2)
@@ -86,6 +89,7 @@ Transform requirements and design documents into a structured task list with cle
    - [ ] [TASK-030] Write unit tests for [Component]
      - **Complexity**: M
      - **Dependencies**: TASK-010
+     - **Testing**: TEST-001 (Unit Tests Implementation)
      - **Target Coverage**: 80%
 
    ## Completed Tasks
@@ -121,17 +125,19 @@ Before writing document to file, ensure comprehensive coverage and proper planni
 - [ ] Dependencies form valid DAG (no circular deps)
 - [ ] Task estimates follow consistent scale (S/M/L/XL)
 - [ ] Testing tasks exist for each component
+- [ ] Every task references relevant TEST.md test cases
+- [ ] Test traceability maintained from requirements to tasks
 - [ ] Documentation tasks included
 - [ ] Deployment/DevOps tasks specified
 - [ ] No "orphaned" tasks without clear purpose
 
 ### Coverage Validation
 Verify complete mapping from design to tasks:
-| Design Component | Task IDs | Coverage Status |
-|------------------|----------|-----------------|
-| UserService      | TASK-010, TASK-011, TASK-012 | Complete |
-| AuthMiddleware   | TASK-020, TASK-021 | Complete |
-| Database Schema  | TASK-001, TASK-002 | Complete |
+| Design Component | Task IDs | Test Coverage | Status |
+|------------------|----------|---------------|---------|
+| UserService      | TASK-010, TASK-011, TASK-012 | TEST-001, TEST-002 | Complete |
+| AuthMiddleware   | TASK-020, TASK-021 | TEST-003 | Complete |
+| Database Schema  | TASK-001, TASK-002 | TEST-004 | Complete |
 
 ### Task Dependency Graph
 Validate dependency chain:
@@ -149,10 +155,13 @@ Add to the end of TASK.md:
 - ✓ Dependencies validated (no cycles)
 - ✓ Estimates provided for all tasks
 - ✓ Testing tasks included (X unit, Y integration)
+- ✓ Test traceability maintained (TEST.md → TASK.md)
+- ✓ Every task references relevant test cases
 - ✓ Documentation tasks specified
 - ✓ No orphaned tasks detected
 
 **Design Coverage**: 100% (X/X components tasked)
+**Test Coverage**: 100% (X/X test cases mapped to tasks)
 **Total Tasks**: X (S: X, M: X, L: X, XL: X)
 **Critical Path**: X days
 **Ready for Implementation**: YES

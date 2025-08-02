@@ -34,7 +34,7 @@ mkdir -p .claude/commands/cc-sdd specs
 
 # Copy namespaced commands (overwrite if they exist)
 echo -e "${Y}📝 Installing cc-sdd slash commands...${NC}"
-for cmd in spec.md requirements.md design.md task.md start-task.md; do
+for cmd in spec.md requirements.md design.md test.md task.md start-task.md; do
     if [ -f "$SOURCE_DIR/.claude/commands/cc-sdd/$cmd" ]; then
         cp "$SOURCE_DIR/.claude/commands/cc-sdd/$cmd" ".claude/commands/cc-sdd/"
         echo -e "${G}✅ cc-sdd/$cmd${NC}"
@@ -46,7 +46,7 @@ done
 # Copy agents (overwrite if they exist)
 echo -e "${Y}🤖 Installing cc-sdd AI agents...${NC}"
 mkdir -p .claude/agents
-for agent in requirements-specialist.md design-architect.md task-planner.md; do
+for agent in requirements-specialist.md design-architect.md qa-tester.md task-planner.md; do
     if [ -f "$SOURCE_DIR/.claude/agents/$agent" ]; then
         cp "$SOURCE_DIR/.claude/agents/$agent" ".claude/agents/"
         echo -e "${G}✅ $agent${NC}"
@@ -121,16 +121,18 @@ echo -e "${B}Quick start:${NC}"
 echo -e "1. ${Y}claude /cc-sdd/spec \"Your project description\"${NC} - Generate complete specifications"
 echo -e "2. ${Y}claude /cc-sdd/requirements \"Additional requirements\"${NC} - Refine requirements"
 echo -e "3. ${Y}claude /cc-sdd/design \"Architecture focus\"${NC} - Update technical design"
-echo -e "4. ${Y}claude /cc-sdd/task \"Component focus\"${NC} - Modify task breakdown"
-echo -e "5. ${Y}claude /cc-sdd/start-task \"Implementation planning\"${NC} - Create integrated todo list"
+echo -e "4. ${Y}claude /cc-sdd/test \"Testing focus\"${NC} - Refine test plans"
+echo -e "5. ${Y}claude /cc-sdd/task \"Component focus\"${NC} - Modify task breakdown"
+echo -e "6. ${Y}claude /cc-sdd/start-task \"Implementation planning\"${NC} - Create integrated todo list"
 echo -e ""
-echo -e "${B}🤖 Agent-Powered Workflow: Requirements → Design → Tasks → Todo Planning${NC}"
-echo -e "${B}✨ AI agents handle specification generation automatically!${NC}"
+echo -e "${B}🤖 Agent-Powered Workflow: Requirements → Design → Testing → Tasks → Todo Planning${NC}"
+echo -e "${B}✨ AI agents handle specification generation automatically with full test traceability!${NC}"
 echo ""
-echo -e "${B}Agent-Powered 5-Command System:${NC}"
+echo -e "${B}Agent-Powered 6-Command System:${NC}"
 echo -e "  ${Y}/cc-sdd/spec${NC}         - Master orchestrator (complete workflow)"
 echo -e "  ${Y}/cc-sdd/requirements${NC} - EARS-format requirements generation"
 echo -e "  ${Y}/cc-sdd/design${NC}       - Technical architecture and design"
+echo -e "  ${Y}/cc-sdd/test${NC}         - QA test plan generation"
 echo -e "  ${Y}/cc-sdd/task${NC}         - Development task breakdown"
 echo -e "  ${Y}/cc-sdd/start-task${NC}   - Integrated todo planning"
 echo ""

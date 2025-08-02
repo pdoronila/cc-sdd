@@ -27,12 +27,17 @@ You are the master orchestrator for spec-driven development. Execute the complet
    - Use design sub-agent to generate and write `specs/DESIGN.md`
    - Agent writes file directly, no user interaction required
 
-3. **Task Planning Phase**
-   - Verify requirements and design documents exist
+3. **Testing Phase**
+   - Ensure requirements and design documents exist and are complete
+   - Use qa-tester sub-agent to generate and write `specs/TEST.md`
+   - Agent writes file directly, no user interaction required
+
+4. **Task Planning Phase**
+   - Verify requirements, design, and test documents exist
    - Use task sub-agent to generate and write `specs/TASK.md`
    - Agent writes file directly, no user interaction required
 
-4. **State Persistence**
+5. **State Persistence**
    - Update `.claude/PROJECT_STATE.md` with current workflow status
 
 ## Execution Steps
@@ -65,6 +70,10 @@ You are the master orchestrator for spec-driven development. Execute the complet
    - Use the design sub-agent to generate and write `specs/DESIGN.md`
    - Agent handles all file operations directly
 
-4. Execute task planning:
+4. Execute testing phase:
+   - Use the qa-tester sub-agent to generate and write `specs/TEST.md`
+   - Agent handles all file operations directly
+
+5. Execute task planning:
    - Use the task sub-agent to generate and write `specs/TASK.md`
    - Agent handles all file operations directly
